@@ -3,6 +3,8 @@ import sqlite3
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from mlxtend.frequent_patterns import apriori, association_rules
+from flask import Flask, request, jsonify
+
 
 app = Flask(__name__)
 CORS(app)
@@ -38,6 +40,12 @@ class ExpertSystem:
 data = load_data()
 rules = extract_rules(data)
 expert = ExpertSystem(rules)
+
+
+@app.route('/')
+def serve_index():
+    return send_from_directory('.', 'index.html')
+
 
 @app.route('/health', methods=['GET'])
 def health():
