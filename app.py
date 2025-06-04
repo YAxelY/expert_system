@@ -5,7 +5,6 @@ from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from mlxtend.frequent_patterns import apriori, association_rules
 
-
 app = Flask(__name__, static_folder='static', static_url_path='')
 CORS(app)
 
@@ -16,8 +15,7 @@ def load_data():
         raise FileNotFoundError(f"Database not found at {db_path}")
     
     conn = sqlite3.connect(db_path)
-    
-    # Vérifie l'existence des tables
+
     try:
         patients = pd.read_sql("SELECT * FROM patients", conn)
         symptoms = pd.read_sql("SELECT * FROM symptoms", conn)
@@ -28,7 +26,7 @@ def load_data():
     
     conn.close()
 
-    # Convertir les données en one-hot encoding
+    # One-hot encoding
     symptoms_pivot = pd.crosstab(symptoms['patient_id'], symptoms['symptom'])
     medications_pivot = pd.crosstab(medications['patient_id'], medications['medication'])
 
@@ -57,7 +55,7 @@ class ExpertSystem:
         return matches.sort_values(by='confidence', ascending=False).head(5).to_dict(orient='records')
 
 
-# Préchargement
+# Chargement des règles
 try:
     data = load_data()
     rules = extract_rules(data)
@@ -68,9 +66,8 @@ except Exception as e:
     print("❌ Échec du chargement :", e)
 
 
-# Routes
 @app.route('/')
-def serve_index():
+def index():
     return send_from_directory('static', 'index.html')
 
 
@@ -92,7 +89,6 @@ def diagnose():
         symptoms = content['symptoms']
         if not isinstance(symptoms, list):
             raise ValueError("Le champ 'symptoms' doit être une liste.")
-
         result = expert.diagnose(symptoms)
         return jsonify({"input": symptoms, "results": result})
     except Exception as e:
@@ -100,4 +96,4 @@ def diagnose():
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host='0.0.0.0', port=5000)
