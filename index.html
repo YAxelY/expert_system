@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Test API Système Expert</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2em; background: #f7f7f7; }
+        .container { background: #fff; padding: 2em; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); max-width: 500px; margin: auto; }
+        label, textarea, input, button { display: block; width: 100%; margin-bottom: 1em; }
+        #result { background: #e9ffe9; padding: 1em; border-radius: 5px; min-height: 2em; }
+        .stream { margin-top: 2em; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Tester l'API du Système Expert</h2>
+    <form id="symptomsForm">
+        <label for="symptoms">Entrez les symptômes (séparés par des virgules) :</label>
+        <textarea id="symptoms" rows="3" placeholder="fièvre, toux, fatigue..."></textarea>
+        <button type="submit">Envoyer</button>
+    </form>
+    <div id="result"></div>
+
+    <div class="stream">
+        <h3>Test Stream (optionnel)</h3>
+        <button id="streamBtn">Envoyer un flux de données</button>
+        <div id="streamResult"></div>
+    </div>
+</div>
+<script>
+// Modifier l'URL selon l'endpoint réel de ton API
+const API_URL = 'http://localhost:5000/diagnose'; // exemple
+const STREAM_URL = 'http://localhost:5000/stream'; // exemple
+
+document.getElementById('symptomsForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const symptoms = document.getElementById('symptoms').value;
+    document.getElementById('result').textContent = 'Envoi en cours...';
+    try {
+        const resp = await fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ symptoms: symptoms.split(',').map(s => s.trim()) })
+        });
+        const data = await resp.json();
+        document.getElementById('result').textContent = data.diagnosis || JSON.stringify(data);
+    } catch (err) {
+        document.getElementById('result').textContent = 'Erreur: ' + err;
+    }
+});
+
+// Exemple d'envoi de données en stream (fetch + ReadableStream)
+document.getElementById('streamBtn').addEventListener('click', async function() {
+    document.getElementById('streamResult').textContent = 'Streaming...';
+    try {
+        const resp = await fetch(STREAM_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ data: 'exemple de flux' })
+        });
+        if (resp.body && resp.body.getReader) {
+            const reader = resp.body.getReader();
+            let result = '';
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+                result += new TextDecoder().decode(value);
+                document.getElementById('streamResult').textContent = result;
+            }
+        } else {
+            // fallback si pas de stream
+            const data = await resp.text();
+            document.getElementById('streamResult').textContent = data;
+        }
+    } catch (err) {
+        document.getElementById('streamResult').textContent = 'Erreur: ' + err;
+    }
+});
+</script>
+</body>
+</html>
