@@ -1,0 +1,2909 @@
+{
+  "patients": [
+    {
+      "age": 58,
+      "symptoms": [
+        "douleurs_musculaires",
+        "essoufflement"
+      ],
+      "diagnostic": "infection_urinaire",
+      "medications": [
+        "amoxicilline",
+        "azithromycine",
+        "paracetamol"
+      ],
+      "date_consultation": "2025-04-12"
+    },
+    {
+      "age": 40,
+      "symptoms": [
+        "eruption_cutanee",
+        "maux_de_gorge",
+        "diarrhee"
+      ],
+      "diagnostic": "angine",
+      "medications": [
+        "omeprazole"
+      ],
+      "date_consultation": "2024-10-20"
+    },
+    {
+      "age": 70,
+      "symptoms": [
+        "fatigue",
+        "eruption_cutanee",
+        "toux"
+      ],
+      "diagnostic": "allergie",
+      "medications": [
+        "loratadine"
+      ],
+      "date_consultation": "2025-05-05"
+    },
+    {
+      "age": 23,
+      "symptoms": [
+        "congestion_nasale",
+        "maux_de_tete"
+      ],
+      "diagnostic": "bronchite",
+      "medications": [
+        "omeprazole",
+        "paracetamol"
+      ],
+      "date_consultation": "2025-04-09"
+    },
+    {
+      "age": 59,
+      "symptoms": [
+        "maux_de_tete",
+        "douleurs_musculaires",
+        "perte_gout_odorat"
+      ],
+      "diagnostic": "bronchite",
+      "medications": [
+        "loratadine",
+        "doliprane"
+      ],
+      "date_consultation": "2024-06-17"
+    },
+    {
+      "age": 50,
+      "symptoms": [
+        "maux_de_gorge",
+        "fièvre",
+        "douleurs_musculaires",
+        "diarrhee"
+      ],
+      "diagnostic": "infection_urinaire",
+      "medications": [
+        "paracetamol",
+        "azithromycine",
+        "doliprane"
+      ],
+      "date_consultation": "2025-05-30"
+    },
+    {
+      "age": 41,
+      "symptoms": [
+        "nausees",
+        "perte_gout_odorat",
+        "fatigue",
+        "maux_de_tete"
+      ],
+      "diagnostic": "angine",
+      "medications": [
+        "loratadine",
+        "azithromycine"
+      ],
+      "date_consultation": "2024-10-08"
+    },
+    {
+      "age": 65,
+      "symptoms": [
+        "essoufflement",
+        "fièvre",
+        "perte_gout_odorat"
+      ],
+      "diagnostic": "angine",
+      "medications": [
+        "omeprazole",
+        "amoxicilline",
+        "paracetamol"
+      ],
+      "date_consultation": "2024-09-12"
+    },
+    {
+      "age": 68,
+      "symptoms": [
+        "maux_de_gorge",
+        "nausees",
+        "maux_de_tete",
+        "fièvre",
+        "congestion_nasale"
+      ],
+      "diagnostic": "infection_urinaire",
+      "medications": [
+        "amoxicilline",
+        "paracetamol",
+        "loratadine"
+      ],
+      "date_consultation": "2025-03-22"
+    },
+    {
+      "age": 33,
+      "symptoms": [
+        "maux_de_tete",
+        "perte_gout_odorat",
+        "douleurs_musculaires",
+        "fièvre",
+        "fatigue"
+      ],
+      "diagnostic": "gastro_enterite",
+      "medications": [
+        "ibuprofene",
+        "aspirine",
+        "paracetamol"
+      ],
+      "date_consultation": "2024-12-26"
+    },
+    {
+      "age": 58,
+      "symptoms": [
+        "perte_gout_odorat",
+        "fièvre",
+        "maux_de_gorge",
+        "toux",
+        "douleurs_musculaires"
+      ],
+      "diagnostic": "gastro_enterite",
+      "medications": [
+        "omeprazole"
+      ],
+      "date_consultation": "2024-11-02"
+    },
+    {
+      "age": 67,
+      "symptoms": [
+        "eruption_cutanee",
+        "nausees",
+        "congestion_nasale"
+      ],
+      "diagnostic": "covid19",
+      "medications": [
+        "azithromycine",
+        "omeprazole",
+        "ibuprofene"
+      ],
+      "date_consultation": "2024-12-13"
+    },
+    {
+      "age": 32,
+      "symptoms": [
+        "toux",
+        "perte_gout_odorat",
+        "douleurs_musculaires",
+        "fatigue"
+      ],
+      "diagnostic": "angine",
+      "medications": [
+        "amoxicilline",
+        "omeprazole"
+      ],
+      "date_consultation": "2025-02-11"
+    },
+    {
+      "age": 51,
+      "symptoms": [
+        "eruption_cutanee",
+        "fatigue",
+        "fièvre",
+        "nausees",
+        "perte_gout_odorat"
+      ],
+      "diagnostic": "infection_urinaire",
+      "medications": [
+        "ibuprofene"
+      ],
+      "date_consultation": "2024-06-16"
+    },
+    {
+      "age": 30,
+      "symptoms": [
+        "fièvre",
+        "toux"
+      ],
+      "diagnostic": "rhume",
+      "medications": [
+        "paracetamol",
+        "doliprane"
+      ],
+      "date_consultation": "2025-01-28"
+    },
+    {
+      "age": 78,
+      "symptoms": [
+        "essoufflement",
+        "diarrhee"
+      ],
+      "diagnostic": "migraine",
+      "medications": [
+        "amoxicilline"
+      ],
+      "date_consultation": "2024-06-20"
+    },
+    {
+      "age": 79,
+      "symptoms": [
+        "toux",
+        "perte_gout_odorat",
+        "essoufflement",
+        "nausees",
+        "fièvre"
+      ],
+      "diagnostic": "migraine",
+      "medications": [
+        "doliprane",
+        "amoxicilline",
+        "ibuprofene"
+      ],
+      "date_consultation": "2025-03-16"
+    },
+    {
+      "age": 18,
+      "symptoms": [
+        "fatigue",
+        "maux_de_gorge",
+        "nausees"
+      ],
+      "diagnostic": "grippe",
+      "medications": [
+        "paracetamol",
+        "amoxicilline"
+      ],
+      "date_consultation": "2025-04-09"
+    },
+    {
+      "age": 63,
+      "symptoms": [
+        "diarrhee",
+        "maux_de_gorge",
+        "fatigue"
+      ],
+      "diagnostic": "covid19",
+      "medications": [
+        "paracetamol",
+        "doliprane"
+      ],
+      "date_consultation": "2024-10-20"
+    },
+    {
+      "age": 85,
+      "symptoms": [
+        "congestion_nasale",
+        "essoufflement"
+      ],
+      "diagnostic": "covid19",
+      "medications": [
+        "ibuprofene",
+        "doliprane"
+      ],
+      "date_consultation": "2025-02-24"
+    },
+    {
+      "age": 48,
+      "symptoms": [
+        "essoufflement",
+        "douleurs_musculaires",
+        "fatigue",
+        "maux_de_tete",
+        "congestion_nasale"
+      ],
+      "diagnostic": "bronchite",
+      "medications": [
+        "omeprazole"
+      ],
+      "date_consultation": "2024-11-28"
+    },
+    {
+      "age": 51,
+      "symptoms": [
+        "perte_gout_odorat",
+        "diarrhee",
+        "maux_de_gorge",
+        "maux_de_tete"
+      ],
+      "diagnostic": "migraine",
+      "medications": [
+        "paracetamol",
+        "aspirine"
+      ],
+      "date_consultation": "2024-07-17"
+    },
+    {
+      "age": 80,
+      "symptoms": [
+        "maux_de_gorge",
+        "fatigue",
+        "essoufflement"
+      ],
+      "diagnostic": "grippe",
+      "medications": [
+        "paracetamol",
+        "azithromycine"
+      ],
+      "date_consultation": "2025-04-04"
+    },
+    {
+      "age": 31,
+      "symptoms": [
+        "maux_de_tete",
+        "douleurs_musculaires",
+        "perte_gout_odorat",
+        "toux",
+        "congestion_nasale"
+      ],
+      "diagnostic": "rhume",
+      "medications": [
+        "aspirine",
+        "ibuprofene",
+        "omeprazole"
+      ],
+      "date_consultation": "2025-02-19"
+    },
+    {
+      "age": 84,
+      "symptoms": [
+        "maux_de_gorge",
+        "maux_de_tete"
+      ],
+      "diagnostic": "rhume",
+      "medications": [
+        "aspirine",
+        "omeprazole"
+      ],
+      "date_consultation": "2024-07-11"
+    },
+    {
+      "age": 82,
+      "symptoms": [
+        "eruption_cutanee",
+        "diarrhee"
+      ],
+      "diagnostic": "covid19",
+      "medications": [
+        "amoxicilline",
+        "paracetamol",
+        "ibuprofene"
+      ],
+      "date_consultation": "2025-05-22"
+    },
+    {
+      "age": 42,
+      "symptoms": [
+        "nausees",
+        "douleurs_musculaires",
+        "maux_de_gorge",
+        "fatigue"
+      ],
+      "diagnostic": "infection_urinaire",
+      "medications": [
+        "loratadine",
+        "omeprazole"
+      ],
+      "date_consultation": "2025-05-21"
+    },
+    {
+      "age": 24,
+      "symptoms": [
+        "congestion_nasale",
+        "diarrhee",
+        "fièvre",
+        "toux",
+        "douleurs_musculaires"
+      ],
+      "diagnostic": "allergie",
+      "medications": [
+        "doliprane"
+      ],
+      "date_consultation": "2024-07-29"
+    },
+    {
+      "age": 80,
+      "symptoms": [
+        "douleurs_musculaires",
+        "fatigue",
+        "eruption_cutanee"
+      ],
+      "diagnostic": "infection_urinaire",
+      "medications": [
+        "ibuprofene",
+        "paracetamol"
+      ],
+      "date_consultation": "2024-07-15"
+    },
+    {
+      "age": 39,
+      "symptoms": [
+        "maux_de_gorge",
+        "eruption_cutanee"
+      ],
+      "diagnostic": "bronchite",
+      "medications": [
+        "ibuprofene",
+        "amoxicilline"
+      ],
+      "date_consultation": "2024-11-17"
+    },
+    {
+      "age": 74,
+      "symptoms": [
+        "douleurs_musculaires",
+        "fatigue"
+      ],
+      "diagnostic": "angine",
+      "medications": [
+        "amoxicilline"
+      ],
+      "date_consultation": "2025-03-02"
+    },
+    {
+      "age": 79,
+      "symptoms": [
+        "fièvre",
+        "maux_de_gorge"
+      ],
+      "diagnostic": "covid19",
+      "medications": [
+        "amoxicilline",
+        "aspirine",
+        "loratadine"
+      ],
+      "date_consultation": "2024-11-01"
+    },
+    {
+      "age": 83,
+      "symptoms": [
+        "perte_gout_odorat",
+        "fatigue"
+      ],
+      "diagnostic": "bronchite",
+      "medications": [
+        "loratadine"
+      ],
+      "date_consultation": "2025-02-13"
+    },
+    {
+      "age": 43,
+      "symptoms": [
+        "eruption_cutanee",
+        "congestion_nasale",
+        "fatigue",
+        "maux_de_tete",
+        "diarrhee"
+      ],
+      "diagnostic": "covid19",
+      "medications": [
+        "omeprazole",
+        "ibuprofene"
+      ],
+      "date_consultation": "2025-01-24"
+    },
+    {
+      "age": 27,
+      "symptoms": [
+        "eruption_cutanee",
+        "congestion_nasale",
+        "douleurs_musculaires",
+        "toux",
+        "perte_gout_odorat"
+      ],
+      "diagnostic": "migraine",
+      "medications": [
+        "doliprane",
+        "amoxicilline",
+        "loratadine"
+      ],
+      "date_consultation": "2025-03-30"
+    },
+    {
+      "age": 52,
+      "symptoms": [
+        "nausees",
+        "fatigue",
+        "diarrhee",
+        "fièvre"
+      ],
+      "diagnostic": "covid19",
+      "medications": [
+        "amoxicilline",
+        "paracetamol",
+        "doliprane"
+      ],
+      "date_consultation": "2025-02-20"
+    },
+    {
+      "age": 68,
+      "symptoms": [
+        "nausees",
+        "douleurs_musculaires"
+      ],
+      "diagnostic": "grippe",
+      "medications": [
+        "aspirine",
+        "paracetamol",
+        "azithromycine"
+      ],
+      "date_consultation": "2024-07-10"
+    },
+    {
+      "age": 20,
+      "symptoms": [
+        "douleurs_musculaires",
+        "congestion_nasale",
+        "toux",
+        "fatigue"
+      ],
+      "diagnostic": "allergie",
+      "medications": [
+        "doliprane",
+        "aspirine",
+        "azithromycine"
+      ],
+      "date_consultation": "2025-02-01"
+    },
+    {
+      "age": 65,
+      "symptoms": [
+        "fatigue",
+        "congestion_nasale",
+        "maux_de_gorge",
+        "douleurs_musculaires"
+      ],
+      "diagnostic": "gastro_enterite",
+      "medications": [
+        "omeprazole",
+        "azithromycine"
+      ],
+      "date_consultation": "2025-04-01"
+    },
+    {
+      "age": 21,
+      "symptoms": [
+        "maux_de_tete",
+        "maux_de_gorge",
+        "toux",
+        "fièvre",
+        "perte_gout_odorat"
+      ],
+      "diagnostic": "bronchite",
+      "medications": [
+        "doliprane",
+        "ibuprofene",
+        "amoxicilline"
+      ],
+      "date_consultation": "2024-11-25"
+    },
+    {
+      "age": 24,
+      "symptoms": [
+        "congestion_nasale",
+        "douleurs_musculaires",
+        "maux_de_tete",
+        "essoufflement",
+        "fièvre"
+      ],
+      "diagnostic": "angine",
+      "medications": [
+        "azithromycine"
+      ],
+      "date_consultation": "2024-09-21"
+    },
+    {
+      "age": 84,
+      "symptoms": [
+        "eruption_cutanee",
+        "diarrhee",
+        "perte_gout_odorat",
+        "essoufflement",
+        "toux"
+      ],
+      "diagnostic": "covid19",
+      "medications": [
+        "loratadine"
+      ],
+      "date_consultation": "2025-03-11"
+    },
+    {
+      "age": 24,
+      "symptoms": [
+        "diarrhee",
+        "essoufflement"
+      ],
+      "diagnostic": "angine",
+      "medications": [
+        "omeprazole"
+      ],
+      "date_consultation": "2025-03-04"
+    },
+    {
+      "age": 77,
+      "symptoms": [
+        "congestion_nasale",
+        "maux_de_gorge",
+        "nausees",
+        "essoufflement",
+        "douleurs_musculaires"
+      ],
+      "diagnostic": "bronchite",
+      "medications": [
+        "doliprane",
+        "azithromycine",
+        "aspirine"
+      ],
+      "date_consultation": "2024-07-28"
+    },
+    {
+      "age": 55,
+      "symptoms": [
+        "essoufflement",
+        "nausees"
+      ],
+      "diagnostic": "allergie",
+      "medications": [
+        "doliprane",
+        "ibuprofene",
+        "azithromycine"
+      ],
+      "date_consultation": "2024-12-16"
+    },
+    {
+      "age": 60,
+      "symptoms": [
+        "maux_de_gorge",
+        "fièvre"
+      ],
+      "diagnostic": "infection_urinaire",
+      "medications": [
+        "aspirine",
+        "doliprane",
+        "omeprazole"
+      ],
+      "date_consultation": "2024-11-13"
+    },
+    {
+      "age": 40,
+      "symptoms": [
+        "eruption_cutanee",
+        "essoufflement",
+        "fatigue"
+      ],
+      "diagnostic": "infection_urinaire",
+      "medications": [
+        "amoxicilline"
+      ],
+      "date_consultation": "2024-09-18"
+    },
+    {
+      "age": 21,
+      "symptoms": [
+        "maux_de_gorge",
+        "toux"
+      ],
+      "diagnostic": "gastro_enterite",
+      "medications": [
+        "paracetamol"
+      ],
+      "date_consultation": "2025-03-08"
+    },
+    {
+      "age": 30,
+      "symptoms": [
+        "maux_de_gorge",
+        "diarrhee"
+      ],
+      "diagnostic": "infection_urinaire",
+      "medications": [
+        "loratadine",
+        "ibuprofene"
+      ],
+      "date_consultation": "2025-02-21"
+    },
+    {
+      "age": 62,
+      "symptoms": [
+        "maux_de_gorge",
+        "diarrhee",
+        "maux_de_tete",
+        "essoufflement"
+      ],
+      "diagnostic": "angine",
+      "medications": [
+        "aspirine",
+        "azithromycine",
+        "loratadine"
+      ],
+      "date_consultation": "2024-08-19"
+    },
+    {
+      "age": 49,
+      "symptoms": [
+        "essoufflement",
+        "toux",
+        "fatigue",
+        "maux_de_gorge",
+        "perte_gout_odorat"
+      ],
+      "diagnostic": "allergie",
+      "medications": [
+        "ibuprofene",
+        "amoxicilline"
+      ],
+      "date_consultation": "2025-04-02"
+    },
+    {
+      "age": 57,
+      "symptoms": [
+        "maux_de_gorge",
+        "fièvre"
+      ],
+      "diagnostic": "gastro_enterite",
+      "medications": [
+        "paracetamol",
+        "aspirine",
+        "doliprane"
+      ],
+      "date_consultation": "2025-02-10"
+    },
+    {
+      "age": 25,
+      "symptoms": [
+        "maux_de_tete",
+        "eruption_cutanee",
+        "maux_de_gorge"
+      ],
+      "diagnostic": "bronchite",
+      "medications": [
+        "paracetamol"
+      ],
+      "date_consultation": "2025-03-17"
+    },
+    {
+      "age": 66,
+      "symptoms": [
+        "fatigue",
+        "maux_de_gorge",
+        "essoufflement"
+      ],
+      "diagnostic": "infection_urinaire",
+      "medications": [
+        "azithromycine",
+        "paracetamol",
+        "omeprazole"
+      ],
+      "date_consultation": "2024-09-18"
+    },
+    {
+      "age": 55,
+      "symptoms": [
+        "maux_de_tete",
+        "perte_gout_odorat",
+        "maux_de_gorge",
+        "eruption_cutanee"
+      ],
+      "diagnostic": "allergie",
+      "medications": [
+        "azithromycine",
+        "paracetamol"
+      ],
+      "date_consultation": "2024-08-13"
+    },
+    {
+      "age": 25,
+      "symptoms": [
+        "douleurs_musculaires",
+        "essoufflement",
+        "congestion_nasale",
+        "toux",
+        "nausees"
+      ],
+      "diagnostic": "grippe",
+      "medications": [
+        "loratadine",
+        "doliprane",
+        "aspirine"
+      ],
+      "date_consultation": "2025-01-05"
+    },
+    {
+      "age": 38,
+      "symptoms": [
+        "fatigue",
+        "perte_gout_odorat",
+        "fièvre",
+        "toux",
+        "maux_de_tete"
+      ],
+      "diagnostic": "migraine",
+      "medications": [
+        "loratadine",
+        "ibuprofene",
+        "azithromycine"
+      ],
+      "date_consultation": "2024-08-26"
+    },
+    {
+      "age": 81,
+      "symptoms": [
+        "toux",
+        "fièvre"
+      ],
+      "diagnostic": "bronchite",
+      "medications": [
+        "ibuprofene",
+        "aspirine"
+      ],
+      "date_consultation": "2024-08-30"
+    },
+    {
+      "age": 37,
+      "symptoms": [
+        "fatigue",
+        "eruption_cutanee",
+        "nausees",
+        "congestion_nasale"
+      ],
+      "diagnostic": "grippe",
+      "medications": [
+        "amoxicilline"
+      ],
+      "date_consultation": "2025-04-17"
+    },
+    {
+      "age": 24,
+      "symptoms": [
+        "maux_de_tete",
+        "essoufflement"
+      ],
+      "diagnostic": "bronchite",
+      "medications": [
+        "azithromycine",
+        "doliprane",
+        "aspirine"
+      ],
+      "date_consultation": "2025-04-10"
+    },
+    {
+      "age": 63,
+      "symptoms": [
+        "fièvre",
+        "eruption_cutanee",
+        "fatigue",
+        "maux_de_tete"
+      ],
+      "diagnostic": "angine",
+      "medications": [
+        "loratadine",
+        "omeprazole",
+        "amoxicilline"
+      ],
+      "date_consultation": "2025-04-29"
+    },
+    {
+      "age": 29,
+      "symptoms": [
+        "essoufflement",
+        "diarrhee",
+        "perte_gout_odorat"
+      ],
+      "diagnostic": "infection_urinaire",
+      "medications": [
+        "loratadine",
+        "aspirine",
+        "azithromycine"
+      ],
+      "date_consultation": "2024-07-08"
+    },
+    {
+      "age": 30,
+      "symptoms": [
+        "toux",
+        "diarrhee",
+        "perte_gout_odorat",
+        "fatigue",
+        "maux_de_tete"
+      ],
+      "diagnostic": "angine",
+      "medications": [
+        "doliprane",
+        "amoxicilline"
+      ],
+      "date_consultation": "2024-12-13"
+    },
+    {
+      "age": 71,
+      "symptoms": [
+        "perte_gout_odorat",
+        "essoufflement"
+      ],
+      "diagnostic": "covid19",
+      "medications": [
+        "azithromycine",
+        "doliprane"
+      ],
+      "date_consultation": "2025-04-18"
+    },
+    {
+      "age": 72,
+      "symptoms": [
+        "nausees",
+        "maux_de_gorge",
+        "essoufflement"
+      ],
+      "diagnostic": "rhume",
+      "medications": [
+        "amoxicilline",
+        "doliprane",
+        "paracetamol"
+      ],
+      "date_consultation": "2025-04-06"
+    },
+    {
+      "age": 25,
+      "symptoms": [
+        "maux_de_tete",
+        "congestion_nasale"
+      ],
+      "diagnostic": "allergie",
+      "medications": [
+        "ibuprofene",
+        "azithromycine"
+      ],
+      "date_consultation": "2024-09-22"
+    },
+    {
+      "age": 29,
+      "symptoms": [
+        "perte_gout_odorat",
+        "maux_de_tete",
+        "eruption_cutanee",
+        "fièvre"
+      ],
+      "diagnostic": "rhume",
+      "medications": [
+        "doliprane",
+        "azithromycine"
+      ],
+      "date_consultation": "2024-11-01"
+    },
+    {
+      "age": 51,
+      "symptoms": [
+        "perte_gout_odorat",
+        "maux_de_tete"
+      ],
+      "diagnostic": "migraine",
+      "medications": [
+        "amoxicilline",
+        "aspirine"
+      ],
+      "date_consultation": "2024-08-09"
+    },
+    {
+      "age": 70,
+      "symptoms": [
+        "fatigue",
+        "maux_de_tete",
+        "nausees",
+        "fièvre"
+      ],
+      "diagnostic": "grippe",
+      "medications": [
+        "omeprazole",
+        "loratadine"
+      ],
+      "date_consultation": "2024-09-11"
+    },
+    {
+      "age": 44,
+      "symptoms": [
+        "fièvre",
+        "douleurs_musculaires",
+        "fatigue"
+      ],
+      "diagnostic": "allergie",
+      "medications": [
+        "azithromycine"
+      ],
+      "date_consultation": "2025-03-12"
+    },
+    {
+      "age": 47,
+      "symptoms": [
+        "congestion_nasale",
+        "nausees",
+        "fatigue",
+        "toux"
+      ],
+      "diagnostic": "gastro_enterite",
+      "medications": [
+        "aspirine",
+        "ibuprofene",
+        "azithromycine"
+      ],
+      "date_consultation": "2025-01-12"
+    },
+    {
+      "age": 30,
+      "symptoms": [
+        "maux_de_tete",
+        "fatigue",
+        "toux"
+      ],
+      "diagnostic": "allergie",
+      "medications": [
+        "paracetamol"
+      ],
+      "date_consultation": "2024-10-21"
+    },
+    {
+      "age": 49,
+      "symptoms": [
+        "eruption_cutanee",
+        "douleurs_musculaires",
+        "maux_de_gorge",
+        "maux_de_tete"
+      ],
+      "diagnostic": "allergie",
+      "medications": [
+        "doliprane",
+        "amoxicilline",
+        "aspirine"
+      ],
+      "date_consultation": "2025-01-14"
+    },
+    {
+      "age": 51,
+      "symptoms": [
+        "diarrhee",
+        "fièvre"
+      ],
+      "diagnostic": "allergie",
+      "medications": [
+        "doliprane",
+        "paracetamol",
+        "aspirine"
+      ],
+      "date_consultation": "2024-10-03"
+    },
+    {
+      "age": 70,
+      "symptoms": [
+        "fatigue",
+        "toux"
+      ],
+      "diagnostic": "covid19",
+      "medications": [
+        "aspirine",
+        "omeprazole"
+      ],
+      "date_consultation": "2024-07-01"
+    },
+    {
+      "age": 24,
+      "symptoms": [
+        "eruption_cutanee",
+        "diarrhee"
+      ],
+      "diagnostic": "migraine",
+      "medications": [
+        "ibuprofene",
+        "doliprane",
+        "paracetamol"
+      ],
+      "date_consultation": "2025-05-28"
+    },
+    {
+      "age": 55,
+      "symptoms": [
+        "eruption_cutanee",
+        "diarrhee",
+        "fièvre",
+        "douleurs_musculaires"
+      ],
+      "diagnostic": "gastro_enterite",
+      "medications": [
+        "loratadine"
+      ],
+      "date_consultation": "2024-11-01"
+    },
+    {
+      "age": 36,
+      "symptoms": [
+        "maux_de_gorge",
+        "perte_gout_odorat"
+      ],
+      "diagnostic": "infection_urinaire",
+      "medications": [
+        "paracetamol",
+        "doliprane",
+        "azithromycine"
+      ],
+      "date_consultation": "2025-04-12"
+    },
+    {
+      "age": 76,
+      "symptoms": [
+        "perte_gout_odorat",
+        "douleurs_musculaires",
+        "fatigue"
+      ],
+      "diagnostic": "allergie",
+      "medications": [
+        "aspirine",
+        "doliprane"
+      ],
+      "date_consultation": "2025-01-20"
+    },
+    {
+      "age": 19,
+      "symptoms": [
+        "essoufflement",
+        "nausees"
+      ],
+      "diagnostic": "migraine",
+      "medications": [
+        "ibuprofene",
+        "doliprane"
+      ],
+      "date_consultation": "2024-07-20"
+    },
+    {
+      "age": 79,
+      "symptoms": [
+        "maux_de_gorge",
+        "fatigue",
+        "nausees",
+        "maux_de_tete"
+      ],
+      "diagnostic": "migraine",
+      "medications": [
+        "aspirine",
+        "paracetamol",
+        "loratadine"
+      ],
+      "date_consultation": "2024-09-30"
+    },
+    {
+      "age": 76,
+      "symptoms": [
+        "fatigue",
+        "maux_de_tete",
+        "douleurs_musculaires",
+        "nausees"
+      ],
+      "diagnostic": "gastro_enterite",
+      "medications": [
+        "loratadine",
+        "amoxicilline"
+      ],
+      "date_consultation": "2025-03-21"
+    },
+    {
+      "age": 28,
+      "symptoms": [
+        "essoufflement",
+        "perte_gout_odorat",
+        "maux_de_tete"
+      ],
+      "diagnostic": "gastro_enterite",
+      "medications": [
+        "aspirine",
+        "azithromycine"
+      ],
+      "date_consultation": "2025-02-12"
+    },
+    {
+      "age": 66,
+      "symptoms": [
+        "fatigue",
+        "fièvre",
+        "toux"
+      ],
+      "diagnostic": "bronchite",
+      "medications": [
+        "aspirine"
+      ],
+      "date_consultation": "2024-06-25"
+    },
+    {
+      "age": 73,
+      "symptoms": [
+        "congestion_nasale",
+        "fatigue"
+      ],
+      "diagnostic": "migraine",
+      "medications": [
+        "ibuprofene",
+        "aspirine"
+      ],
+      "date_consultation": "2025-04-30"
+    },
+    {
+      "age": 78,
+      "symptoms": [
+        "douleurs_musculaires",
+        "eruption_cutanee"
+      ],
+      "diagnostic": "migraine",
+      "medications": [
+        "ibuprofene",
+        "doliprane",
+        "loratadine"
+      ],
+      "date_consultation": "2024-09-22"
+    },
+    {
+      "age": 41,
+      "symptoms": [
+        "toux",
+        "eruption_cutanee",
+        "maux_de_tete",
+        "essoufflement",
+        "douleurs_musculaires"
+      ],
+      "diagnostic": "bronchite",
+      "medications": [
+        "doliprane",
+        "paracetamol",
+        "aspirine"
+      ],
+      "date_consultation": "2024-10-20"
+    },
+    {
+      "age": 70,
+      "symptoms": [
+        "fièvre",
+        "fatigue",
+        "toux",
+        "diarrhee",
+        "perte_gout_odorat"
+      ],
+      "diagnostic": "rhume",
+      "medications": [
+        "doliprane",
+        "omeprazole"
+      ],
+      "date_consultation": "2024-09-29"
+    },
+    {
+      "age": 27,
+      "symptoms": [
+        "essoufflement",
+        "perte_gout_odorat",
+        "diarrhee",
+        "eruption_cutanee",
+        "douleurs_musculaires"
+      ],
+      "diagnostic": "migraine",
+      "medications": [
+        "amoxicilline",
+        "doliprane",
+        "omeprazole"
+      ],
+      "date_consultation": "2024-07-24"
+    },
+    {
+      "age": 83,
+      "symptoms": [
+        "fièvre",
+        "maux_de_gorge"
+      ],
+      "diagnostic": "migraine",
+      "medications": [
+        "aspirine",
+        "omeprazole"
+      ],
+      "date_consultation": "2024-12-01"
+    },
+    {
+      "age": 80,
+      "symptoms": [
+        "fièvre",
+        "fatigue",
+        "maux_de_gorge",
+        "diarrhee",
+        "eruption_cutanee"
+      ],
+      "diagnostic": "infection_urinaire",
+      "medications": [
+        "paracetamol",
+        "azithromycine",
+        "omeprazole"
+      ],
+      "date_consultation": "2025-01-03"
+    },
+    {
+      "age": 58,
+      "symptoms": [
+        "perte_gout_odorat",
+        "maux_de_gorge"
+      ],
+      "diagnostic": "bronchite",
+      "medications": [
+        "aspirine",
+        "doliprane",
+        "loratadine"
+      ],
+      "date_consultation": "2025-03-12"
+    },
+    {
+      "age": 75,
+      "symptoms": [
+        "perte_gout_odorat",
+        "eruption_cutanee"
+      ],
+      "diagnostic": "grippe",
+      "medications": [
+        "doliprane"
+      ],
+      "date_consultation": "2024-12-07"
+    },
+    {
+      "age": 51,
+      "symptoms": [
+        "perte_gout_odorat",
+        "maux_de_tete",
+        "maux_de_gorge"
+      ],
+      "diagnostic": "grippe",
+      "medications": [
+        "doliprane",
+        "omeprazole"
+      ],
+      "date_consultation": "2024-08-02"
+    },
+    {
+      "age": 71,
+      "symptoms": [
+        "maux_de_tete",
+        "eruption_cutanee",
+        "congestion_nasale",
+        "maux_de_gorge",
+        "perte_gout_odorat"
+      ],
+      "diagnostic": "angine",
+      "medications": [
+        "omeprazole",
+        "paracetamol",
+        "ibuprofene"
+      ],
+      "date_consultation": "2024-12-27"
+    },
+    {
+      "age": 53,
+      "symptoms": [
+        "eruption_cutanee",
+        "congestion_nasale"
+      ],
+      "diagnostic": "migraine",
+      "medications": [
+        "paracetamol"
+      ],
+      "date_consultation": "2024-12-18"
+    },
+    {
+      "age": 74,
+      "symptoms": [
+        "maux_de_gorge",
+        "essoufflement"
+      ],
+      "diagnostic": "allergie",
+      "medications": [
+        "aspirine",
+        "ibuprofene",
+        "doliprane"
+      ],
+      "date_consultation": "2024-07-28"
+    },
+    {
+      "age": 45,
+      "symptoms": [
+        "eruption_cutanee",
+        "fatigue",
+        "diarrhee",
+        "douleurs_musculaires"
+      ],
+      "diagnostic": "covid19",
+      "medications": [
+        "omeprazole"
+      ],
+      "date_consultation": "2024-07-06"
+    },
+    {
+      "age": 61,
+      "symptoms": [
+        "toux",
+        "maux_de_gorge",
+        "essoufflement",
+        "fatigue"
+      ],
+      "diagnostic": "angine",
+      "medications": [
+        "doliprane"
+      ],
+      "date_consultation": "2024-12-19"
+    },
+    {
+      "age": 58,
+      "symptoms": [
+        "eruption_cutanee",
+        "perte_gout_odorat",
+        "toux"
+      ],
+      "diagnostic": "covid19",
+      "medications": [
+        "doliprane"
+      ],
+      "date_consultation": "2024-10-12"
+    },
+    {
+      "age": 82,
+      "symptoms": [
+        "eruption_cutanee",
+        "toux"
+      ],
+      "diagnostic": "grippe",
+      "medications": [
+        "doliprane",
+        "azithromycine"
+      ],
+      "date_consultation": "2025-02-23"
+    },
+    {
+      "age": 44,
+      "symptoms": [
+        "douleurs_musculaires",
+        "eruption_cutanee",
+        "fatigue"
+      ],
+      "diagnostic": "infection_urinaire",
+      "medications": [
+        "paracetamol"
+      ],
+      "date_consultation": "2025-05-13"
+    },
+    {
+      "age": 24,
+      "symptoms": [
+        "diarrhee",
+        "eruption_cutanee",
+        "maux_de_gorge"
+      ],
+      "diagnostic": "bronchite",
+      "medications": [
+        "amoxicilline"
+      ],
+      "date_consultation": "2025-04-04"
+    },
+    {
+      "age": 68,
+      "symptoms": [
+        "maux_de_tete",
+        "diarrhee"
+      ],
+      "diagnostic": "grippe",
+      "medications": [
+        "aspirine"
+      ],
+      "date_consultation": "2025-01-27"
+    },
+    {
+      "age": 33,
+      "symptoms": [
+        "fatigue",
+        "douleurs_musculaires"
+      ],
+      "diagnostic": "bronchite",
+      "medications": [
+        "azithromycine"
+      ],
+      "date_consultation": "2025-04-29"
+    },
+    {
+      "age": 22,
+      "symptoms": [
+        "essoufflement",
+        "fatigue"
+      ],
+      "diagnostic": "rhume",
+      "medications": [
+        "aspirine",
+        "azithromycine",
+        "doliprane"
+      ],
+      "date_consultation": "2025-01-05"
+    },
+    {
+      "age": 60,
+      "symptoms": [
+        "perte_gout_odorat",
+        "maux_de_tete"
+      ],
+      "diagnostic": "angine",
+      "medications": [
+        "loratadine"
+      ],
+      "date_consultation": "2025-03-26"
+    },
+    {
+      "age": 54,
+      "symptoms": [
+        "nausees",
+        "perte_gout_odorat",
+        "eruption_cutanee"
+      ],
+      "diagnostic": "covid19",
+      "medications": [
+        "loratadine",
+        "doliprane"
+      ],
+      "date_consultation": "2024-11-16"
+    },
+    {
+      "age": 42,
+      "symptoms": [
+        "douleurs_musculaires",
+        "fatigue",
+        "toux",
+        "fièvre"
+      ],
+      "diagnostic": "bronchite",
+      "medications": [
+        "aspirine",
+        "ibuprofene",
+        "omeprazole"
+      ],
+      "date_consultation": "2024-08-05"
+    },
+    {
+      "age": 77,
+      "symptoms": [
+        "maux_de_tete",
+        "eruption_cutanee"
+      ],
+      "diagnostic": "covid19",
+      "medications": [
+        "paracetamol",
+        "doliprane"
+      ],
+      "date_consultation": "2024-12-07"
+    },
+    {
+      "age": 55,
+      "symptoms": [
+        "nausees",
+        "congestion_nasale",
+        "fièvre",
+        "diarrhee",
+        "eruption_cutanee"
+      ],
+      "diagnostic": "rhume",
+      "medications": [
+        "aspirine"
+      ],
+      "date_consultation": "2024-09-22"
+    },
+    {
+      "age": 33,
+      "symptoms": [
+        "congestion_nasale",
+        "maux_de_tete",
+        "perte_gout_odorat",
+        "toux",
+        "essoufflement"
+      ],
+      "diagnostic": "infection_urinaire",
+      "medications": [
+        "ibuprofene",
+        "paracetamol"
+      ],
+      "date_consultation": "2025-01-08"
+    },
+    {
+      "age": 77,
+      "symptoms": [
+        "douleurs_musculaires",
+        "essoufflement",
+        "eruption_cutanee"
+      ],
+      "diagnostic": "rhume",
+      "medications": [
+        "paracetamol",
+        "aspirine"
+      ],
+      "date_consultation": "2025-02-21"
+    },
+    {
+      "age": 52,
+      "symptoms": [
+        "diarrhee",
+        "fatigue",
+        "douleurs_musculaires",
+        "fièvre"
+      ],
+      "diagnostic": "infection_urinaire",
+      "medications": [
+        "doliprane"
+      ],
+      "date_consultation": "2025-02-13"
+    },
+    {
+      "age": 65,
+      "symptoms": [
+        "maux_de_gorge",
+        "toux",
+        "diarrhee"
+      ],
+      "diagnostic": "migraine",
+      "medications": [
+        "ibuprofene",
+        "amoxicilline",
+        "paracetamol"
+      ],
+      "date_consultation": "2025-04-08"
+    },
+    {
+      "age": 77,
+      "symptoms": [
+        "fièvre",
+        "eruption_cutanee",
+        "maux_de_gorge",
+        "douleurs_musculaires",
+        "nausees"
+      ],
+      "diagnostic": "covid19",
+      "medications": [
+        "aspirine",
+        "omeprazole",
+        "azithromycine"
+      ],
+      "date_consultation": "2024-07-01"
+    },
+    {
+      "age": 74,
+      "symptoms": [
+        "fatigue",
+        "essoufflement"
+      ],
+      "diagnostic": "angine",
+      "medications": [
+        "doliprane"
+      ],
+      "date_consultation": "2025-02-25"
+    },
+    {
+      "age": 35,
+      "symptoms": [
+        "maux_de_tete",
+        "maux_de_gorge",
+        "fatigue",
+        "nausees",
+        "eruption_cutanee"
+      ],
+      "diagnostic": "grippe",
+      "medications": [
+        "aspirine"
+      ],
+      "date_consultation": "2024-07-03"
+    },
+    {
+      "age": 51,
+      "symptoms": [
+        "congestion_nasale",
+        "fièvre"
+      ],
+      "diagnostic": "infection_urinaire",
+      "medications": [
+        "ibuprofene",
+        "aspirine",
+        "loratadine"
+      ],
+      "date_consultation": "2024-06-13"
+    },
+    {
+      "age": 33,
+      "symptoms": [
+        "toux",
+        "perte_gout_odorat"
+      ],
+      "diagnostic": "allergie",
+      "medications": [
+        "aspirine"
+      ],
+      "date_consultation": "2025-01-09"
+    },
+    {
+      "age": 53,
+      "symptoms": [
+        "maux_de_tete",
+        "fatigue"
+      ],
+      "diagnostic": "bronchite",
+      "medications": [
+        "azithromycine",
+        "loratadine"
+      ],
+      "date_consultation": "2024-11-12"
+    },
+    {
+      "age": 39,
+      "symptoms": [
+        "perte_gout_odorat",
+        "nausees",
+        "toux"
+      ],
+      "diagnostic": "allergie",
+      "medications": [
+        "azithromycine"
+      ],
+      "date_consultation": "2024-10-26"
+    },
+    {
+      "age": 51,
+      "symptoms": [
+        "congestion_nasale",
+        "nausees",
+        "fatigue"
+      ],
+      "diagnostic": "allergie",
+      "medications": [
+        "omeprazole"
+      ],
+      "date_consultation": "2024-12-25"
+    },
+    {
+      "age": 42,
+      "symptoms": [
+        "eruption_cutanee",
+        "fatigue",
+        "nausees",
+        "toux"
+      ],
+      "diagnostic": "migraine",
+      "medications": [
+        "aspirine",
+        "omeprazole",
+        "amoxicilline"
+      ],
+      "date_consultation": "2024-11-03"
+    },
+    {
+      "age": 27,
+      "symptoms": [
+        "toux",
+        "congestion_nasale",
+        "maux_de_tete",
+        "maux_de_gorge"
+      ],
+      "diagnostic": "gastro_enterite",
+      "medications": [
+        "paracetamol"
+      ],
+      "date_consultation": "2025-02-01"
+    },
+    {
+      "age": 51,
+      "symptoms": [
+        "maux_de_gorge",
+        "diarrhee",
+        "eruption_cutanee",
+        "douleurs_musculaires",
+        "fatigue"
+      ],
+      "diagnostic": "bronchite",
+      "medications": [
+        "loratadine",
+        "paracetamol",
+        "aspirine"
+      ],
+      "date_consultation": "2024-08-16"
+    },
+    {
+      "age": 25,
+      "symptoms": [
+        "maux_de_tete",
+        "eruption_cutanee",
+        "perte_gout_odorat",
+        "nausees",
+        "essoufflement"
+      ],
+      "diagnostic": "rhume",
+      "medications": [
+        "azithromycine",
+        "loratadine"
+      ],
+      "date_consultation": "2024-09-23"
+    },
+    {
+      "age": 47,
+      "symptoms": [
+        "maux_de_tete",
+        "douleurs_musculaires",
+        "toux"
+      ],
+      "diagnostic": "allergie",
+      "medications": [
+        "ibuprofene",
+        "paracetamol",
+        "loratadine"
+      ],
+      "date_consultation": "2025-03-30"
+    },
+    {
+      "age": 57,
+      "symptoms": [
+        "eruption_cutanee",
+        "fatigue",
+        "maux_de_gorge"
+      ],
+      "diagnostic": "bronchite",
+      "medications": [
+        "ibuprofene",
+        "loratadine"
+      ],
+      "date_consultation": "2025-03-04"
+    },
+    {
+      "age": 46,
+      "symptoms": [
+        "perte_gout_odorat",
+        "maux_de_gorge",
+        "diarrhee",
+        "eruption_cutanee",
+        "fièvre"
+      ],
+      "diagnostic": "gastro_enterite",
+      "medications": [
+        "azithromycine",
+        "amoxicilline",
+        "doliprane"
+      ],
+      "date_consultation": "2024-08-25"
+    },
+    {
+      "age": 38,
+      "symptoms": [
+        "nausees",
+        "congestion_nasale",
+        "diarrhee"
+      ],
+      "diagnostic": "bronchite",
+      "medications": [
+        "amoxicilline",
+        "omeprazole"
+      ],
+      "date_consultation": "2025-04-29"
+    },
+    {
+      "age": 65,
+      "symptoms": [
+        "essoufflement",
+        "congestion_nasale",
+        "eruption_cutanee",
+        "toux",
+        "perte_gout_odorat"
+      ],
+      "diagnostic": "angine",
+      "medications": [
+        "azithromycine"
+      ],
+      "date_consultation": "2025-02-26"
+    },
+    {
+      "age": 52,
+      "symptoms": [
+        "diarrhee",
+        "fatigue"
+      ],
+      "diagnostic": "gastro_enterite",
+      "medications": [
+        "aspirine"
+      ],
+      "date_consultation": "2025-03-18"
+    },
+    {
+      "age": 61,
+      "symptoms": [
+        "maux_de_gorge",
+        "essoufflement",
+        "eruption_cutanee",
+        "fièvre"
+      ],
+      "diagnostic": "infection_urinaire",
+      "medications": [
+        "loratadine",
+        "paracetamol"
+      ],
+      "date_consultation": "2024-07-08"
+    },
+    {
+      "age": 40,
+      "symptoms": [
+        "perte_gout_odorat",
+        "fièvre",
+        "toux",
+        "maux_de_tete",
+        "essoufflement"
+      ],
+      "diagnostic": "grippe",
+      "medications": [
+        "azithromycine",
+        "amoxicilline",
+        "loratadine"
+      ],
+      "date_consultation": "2024-09-16"
+    },
+    {
+      "age": 21,
+      "symptoms": [
+        "fatigue",
+        "congestion_nasale",
+        "diarrhee",
+        "eruption_cutanee"
+      ],
+      "diagnostic": "bronchite",
+      "medications": [
+        "loratadine"
+      ],
+      "date_consultation": "2025-01-30"
+    },
+    {
+      "age": 18,
+      "symptoms": [
+        "diarrhee",
+        "maux_de_tete",
+        "toux"
+      ],
+      "diagnostic": "migraine",
+      "medications": [
+        "azithromycine",
+        "ibuprofene",
+        "paracetamol"
+      ],
+      "date_consultation": "2024-10-26"
+    },
+    {
+      "age": 59,
+      "symptoms": [
+        "maux_de_tete",
+        "essoufflement"
+      ],
+      "diagnostic": "migraine",
+      "medications": [
+        "doliprane",
+        "amoxicilline",
+        "azithromycine"
+      ],
+      "date_consultation": "2025-02-08"
+    },
+    {
+      "age": 63,
+      "symptoms": [
+        "nausees",
+        "eruption_cutanee"
+      ],
+      "diagnostic": "migraine",
+      "medications": [
+        "paracetamol",
+        "azithromycine",
+        "aspirine"
+      ],
+      "date_consultation": "2024-06-14"
+    },
+    {
+      "age": 27,
+      "symptoms": [
+        "fatigue",
+        "douleurs_musculaires",
+        "perte_gout_odorat",
+        "eruption_cutanee"
+      ],
+      "diagnostic": "infection_urinaire",
+      "medications": [
+        "azithromycine"
+      ],
+      "date_consultation": "2025-02-14"
+    },
+    {
+      "age": 81,
+      "symptoms": [
+        "perte_gout_odorat",
+        "toux",
+        "nausees",
+        "eruption_cutanee"
+      ],
+      "diagnostic": "grippe",
+      "medications": [
+        "azithromycine"
+      ],
+      "date_consultation": "2025-01-18"
+    },
+    {
+      "age": 43,
+      "symptoms": [
+        "perte_gout_odorat",
+        "fatigue",
+        "eruption_cutanee",
+        "essoufflement"
+      ],
+      "diagnostic": "infection_urinaire",
+      "medications": [
+        "amoxicilline"
+      ],
+      "date_consultation": "2025-04-26"
+    },
+    {
+      "age": 71,
+      "symptoms": [
+        "toux",
+        "diarrhee",
+        "maux_de_gorge",
+        "congestion_nasale"
+      ],
+      "diagnostic": "rhume",
+      "medications": [
+        "doliprane",
+        "omeprazole",
+        "loratadine"
+      ],
+      "date_consultation": "2024-12-12"
+    },
+    {
+      "age": 64,
+      "symptoms": [
+        "toux",
+        "fatigue"
+      ],
+      "diagnostic": "grippe",
+      "medications": [
+        "loratadine",
+        "omeprazole",
+        "doliprane"
+      ],
+      "date_consultation": "2025-01-01"
+    },
+    {
+      "age": 63,
+      "symptoms": [
+        "maux_de_gorge",
+        "fatigue",
+        "diarrhee",
+        "maux_de_tete"
+      ],
+      "diagnostic": "allergie",
+      "medications": [
+        "loratadine"
+      ],
+      "date_consultation": "2024-10-04"
+    },
+    {
+      "age": 74,
+      "symptoms": [
+        "fatigue",
+        "toux"
+      ],
+      "diagnostic": "infection_urinaire",
+      "medications": [
+        "amoxicilline",
+        "azithromycine"
+      ],
+      "date_consultation": "2024-10-14"
+    },
+    {
+      "age": 73,
+      "symptoms": [
+        "essoufflement",
+        "eruption_cutanee",
+        "perte_gout_odorat"
+      ],
+      "diagnostic": "bronchite",
+      "medications": [
+        "doliprane",
+        "aspirine"
+      ],
+      "date_consultation": "2025-05-01"
+    },
+    {
+      "age": 61,
+      "symptoms": [
+        "douleurs_musculaires",
+        "perte_gout_odorat",
+        "fièvre",
+        "toux",
+        "maux_de_tete"
+      ],
+      "diagnostic": "grippe",
+      "medications": [
+        "azithromycine"
+      ],
+      "date_consultation": "2024-08-01"
+    },
+    {
+      "age": 34,
+      "symptoms": [
+        "essoufflement",
+        "perte_gout_odorat",
+        "maux_de_tete",
+        "toux",
+        "nausees"
+      ],
+      "diagnostic": "gastro_enterite",
+      "medications": [
+        "ibuprofene"
+      ],
+      "date_consultation": "2025-02-09"
+    },
+    {
+      "age": 24,
+      "symptoms": [
+        "eruption_cutanee",
+        "nausees",
+        "maux_de_gorge",
+        "diarrhee",
+        "toux"
+      ],
+      "diagnostic": "rhume",
+      "medications": [
+        "ibuprofene",
+        "paracetamol",
+        "aspirine"
+      ],
+      "date_consultation": "2024-08-29"
+    },
+    {
+      "age": 42,
+      "symptoms": [
+        "perte_gout_odorat",
+        "nausees",
+        "fièvre"
+      ],
+      "diagnostic": "grippe",
+      "medications": [
+        "azithromycine"
+      ],
+      "date_consultation": "2024-07-06"
+    },
+    {
+      "age": 70,
+      "symptoms": [
+        "diarrhee",
+        "toux",
+        "maux_de_tete",
+        "maux_de_gorge",
+        "fatigue"
+      ],
+      "diagnostic": "bronchite",
+      "medications": [
+        "ibuprofene",
+        "doliprane"
+      ],
+      "date_consultation": "2024-09-16"
+    },
+    {
+      "age": 23,
+      "symptoms": [
+        "essoufflement",
+        "maux_de_tete",
+        "fatigue"
+      ],
+      "diagnostic": "grippe",
+      "medications": [
+        "paracetamol"
+      ],
+      "date_consultation": "2025-01-24"
+    },
+    {
+      "age": 46,
+      "symptoms": [
+        "fièvre",
+        "nausees",
+        "maux_de_gorge"
+      ],
+      "diagnostic": "covid19",
+      "medications": [
+        "amoxicilline",
+        "loratadine",
+        "aspirine"
+      ],
+      "date_consultation": "2025-04-15"
+    },
+    {
+      "age": 69,
+      "symptoms": [
+        "fièvre",
+        "toux",
+        "maux_de_gorge"
+      ],
+      "diagnostic": "rhume",
+      "medications": [
+        "loratadine"
+      ],
+      "date_consultation": "2025-04-08"
+    },
+    {
+      "age": 79,
+      "symptoms": [
+        "perte_gout_odorat",
+        "toux"
+      ],
+      "diagnostic": "migraine",
+      "medications": [
+        "doliprane",
+        "aspirine",
+        "azithromycine"
+      ],
+      "date_consultation": "2025-05-19"
+    },
+    {
+      "age": 53,
+      "symptoms": [
+        "essoufflement",
+        "eruption_cutanee"
+      ],
+      "diagnostic": "angine",
+      "medications": [
+        "omeprazole",
+        "aspirine"
+      ],
+      "date_consultation": "2025-06-02"
+    },
+    {
+      "age": 33,
+      "symptoms": [
+        "maux_de_tete",
+        "eruption_cutanee",
+        "douleurs_musculaires",
+        "perte_gout_odorat",
+        "fièvre"
+      ],
+      "diagnostic": "infection_urinaire",
+      "medications": [
+        "azithromycine",
+        "doliprane",
+        "aspirine"
+      ],
+      "date_consultation": "2025-01-21"
+    },
+    {
+      "age": 78,
+      "symptoms": [
+        "maux_de_gorge",
+        "congestion_nasale",
+        "nausees",
+        "douleurs_musculaires",
+        "diarrhee"
+      ],
+      "diagnostic": "migraine",
+      "medications": [
+        "loratadine",
+        "omeprazole"
+      ],
+      "date_consultation": "2024-12-16"
+    },
+    {
+      "age": 73,
+      "symptoms": [
+        "fatigue",
+        "diarrhee",
+        "fièvre",
+        "nausees",
+        "maux_de_gorge"
+      ],
+      "diagnostic": "covid19",
+      "medications": [
+        "doliprane",
+        "omeprazole",
+        "amoxicilline"
+      ],
+      "date_consultation": "2025-05-13"
+    },
+    {
+      "age": 31,
+      "symptoms": [
+        "congestion_nasale",
+        "essoufflement",
+        "diarrhee",
+        "maux_de_gorge",
+        "toux"
+      ],
+      "diagnostic": "covid19",
+      "medications": [
+        "ibuprofene",
+        "aspirine",
+        "amoxicilline"
+      ],
+      "date_consultation": "2024-08-03"
+    },
+    {
+      "age": 58,
+      "symptoms": [
+        "toux",
+        "douleurs_musculaires",
+        "eruption_cutanee",
+        "congestion_nasale"
+      ],
+      "diagnostic": "grippe",
+      "medications": [
+        "loratadine",
+        "ibuprofene",
+        "omeprazole"
+      ],
+      "date_consultation": "2024-11-29"
+    },
+    {
+      "age": 74,
+      "symptoms": [
+        "essoufflement",
+        "maux_de_tete"
+      ],
+      "diagnostic": "gastro_enterite",
+      "medications": [
+        "aspirine",
+        "paracetamol"
+      ],
+      "date_consultation": "2024-10-13"
+    },
+    {
+      "age": 24,
+      "symptoms": [
+        "toux",
+        "congestion_nasale"
+      ],
+      "diagnostic": "rhume",
+      "medications": [
+        "aspirine",
+        "loratadine"
+      ],
+      "date_consultation": "2024-09-11"
+    },
+    {
+      "age": 81,
+      "symptoms": [
+        "diarrhee",
+        "essoufflement",
+        "maux_de_tete",
+        "douleurs_musculaires",
+        "perte_gout_odorat"
+      ],
+      "diagnostic": "grippe",
+      "medications": [
+        "paracetamol",
+        "azithromycine"
+      ],
+      "date_consultation": "2025-04-13"
+    },
+    {
+      "age": 40,
+      "symptoms": [
+        "essoufflement",
+        "perte_gout_odorat"
+      ],
+      "diagnostic": "bronchite",
+      "medications": [
+        "azithromycine",
+        "paracetamol",
+        "aspirine"
+      ],
+      "date_consultation": "2024-12-09"
+    },
+    {
+      "age": 32,
+      "symptoms": [
+        "essoufflement",
+        "diarrhee"
+      ],
+      "diagnostic": "bronchite",
+      "medications": [
+        "paracetamol",
+        "azithromycine",
+        "amoxicilline"
+      ],
+      "date_consultation": "2024-11-16"
+    },
+    {
+      "age": 41,
+      "symptoms": [
+        "fièvre",
+        "douleurs_musculaires",
+        "maux_de_tete"
+      ],
+      "diagnostic": "gastro_enterite",
+      "medications": [
+        "ibuprofene"
+      ],
+      "date_consultation": "2024-10-15"
+    },
+    {
+      "age": 29,
+      "symptoms": [
+        "eruption_cutanee",
+        "nausees"
+      ],
+      "diagnostic": "gastro_enterite",
+      "medications": [
+        "omeprazole",
+        "amoxicilline"
+      ],
+      "date_consultation": "2024-11-29"
+    },
+    {
+      "age": 38,
+      "symptoms": [
+        "fatigue",
+        "nausees",
+        "perte_gout_odorat",
+        "douleurs_musculaires"
+      ],
+      "diagnostic": "allergie",
+      "medications": [
+        "doliprane",
+        "aspirine",
+        "paracetamol"
+      ],
+      "date_consultation": "2024-12-24"
+    },
+    {
+      "age": 72,
+      "symptoms": [
+        "essoufflement",
+        "douleurs_musculaires",
+        "diarrhee",
+        "congestion_nasale",
+        "eruption_cutanee"
+      ],
+      "diagnostic": "allergie",
+      "medications": [
+        "azithromycine",
+        "omeprazole"
+      ],
+      "date_consultation": "2025-01-17"
+    },
+    {
+      "age": 21,
+      "symptoms": [
+        "eruption_cutanee",
+        "essoufflement",
+        "toux"
+      ],
+      "diagnostic": "infection_urinaire",
+      "medications": [
+        "amoxicilline",
+        "paracetamol"
+      ],
+      "date_consultation": "2024-11-04"
+    },
+    {
+      "age": 78,
+      "symptoms": [
+        "douleurs_musculaires",
+        "maux_de_tete"
+      ],
+      "diagnostic": "allergie",
+      "medications": [
+        "ibuprofene",
+        "doliprane",
+        "omeprazole"
+      ],
+      "date_consultation": "2024-08-07"
+    },
+    {
+      "age": 37,
+      "symptoms": [
+        "congestion_nasale",
+        "douleurs_musculaires",
+        "maux_de_tete"
+      ],
+      "diagnostic": "grippe",
+      "medications": [
+        "aspirine",
+        "ibuprofene",
+        "omeprazole"
+      ],
+      "date_consultation": "2025-05-13"
+    },
+    {
+      "age": 26,
+      "symptoms": [
+        "eruption_cutanee",
+        "douleurs_musculaires"
+      ],
+      "diagnostic": "allergie",
+      "medications": [
+        "doliprane",
+        "paracetamol"
+      ],
+      "date_consultation": "2025-02-01"
+    },
+    {
+      "age": 78,
+      "symptoms": [
+        "maux_de_gorge",
+        "eruption_cutanee",
+        "nausees",
+        "fatigue"
+      ],
+      "diagnostic": "rhume",
+      "medications": [
+        "azithromycine",
+        "paracetamol"
+      ],
+      "date_consultation": "2025-06-04"
+    },
+    {
+      "age": 79,
+      "symptoms": [
+        "nausees",
+        "fatigue",
+        "diarrhee"
+      ],
+      "diagnostic": "migraine",
+      "medications": [
+        "azithromycine",
+        "paracetamol"
+      ],
+      "date_consultation": "2024-11-12"
+    },
+    {
+      "age": 84,
+      "symptoms": [
+        "maux_de_tete",
+        "toux",
+        "eruption_cutanee",
+        "nausees",
+        "congestion_nasale"
+      ],
+      "diagnostic": "allergie",
+      "medications": [
+        "paracetamol"
+      ],
+      "date_consultation": "2025-05-07"
+    },
+    {
+      "age": 58,
+      "symptoms": [
+        "fatigue",
+        "maux_de_tete",
+        "fièvre",
+        "eruption_cutanee"
+      ],
+      "diagnostic": "grippe",
+      "medications": [
+        "loratadine",
+        "doliprane",
+        "azithromycine"
+      ],
+      "date_consultation": "2024-06-26"
+    },
+    {
+      "age": 44,
+      "symptoms": [
+        "eruption_cutanee",
+        "maux_de_tete"
+      ],
+      "diagnostic": "bronchite",
+      "medications": [
+        "ibuprofene"
+      ],
+      "date_consultation": "2025-06-03"
+    },
+    {
+      "age": 19,
+      "symptoms": [
+        "diarrhee",
+        "toux",
+        "congestion_nasale",
+        "maux_de_tete",
+        "nausees"
+      ],
+      "diagnostic": "angine",
+      "medications": [
+        "loratadine",
+        "amoxicilline",
+        "paracetamol"
+      ],
+      "date_consultation": "2024-10-14"
+    },
+    {
+      "age": 80,
+      "symptoms": [
+        "perte_gout_odorat",
+        "maux_de_gorge",
+        "diarrhee",
+        "nausees",
+        "eruption_cutanee"
+      ],
+      "diagnostic": "gastro_enterite",
+      "medications": [
+        "aspirine"
+      ],
+      "date_consultation": "2025-06-02"
+    },
+    {
+      "age": 24,
+      "symptoms": [
+        "diarrhee",
+        "maux_de_gorge"
+      ],
+      "diagnostic": "covid19",
+      "medications": [
+        "paracetamol"
+      ],
+      "date_consultation": "2025-03-10"
+    },
+    {
+      "age": 26,
+      "symptoms": [
+        "perte_gout_odorat",
+        "maux_de_tete",
+        "fatigue",
+        "congestion_nasale"
+      ],
+      "diagnostic": "infection_urinaire",
+      "medications": [
+        "azithromycine",
+        "omeprazole",
+        "ibuprofene"
+      ],
+      "date_consultation": "2024-10-30"
+    },
+    {
+      "age": 21,
+      "symptoms": [
+        "eruption_cutanee",
+        "maux_de_gorge"
+      ],
+      "diagnostic": "grippe",
+      "medications": [
+        "amoxicilline",
+        "aspirine"
+      ],
+      "date_consultation": "2024-10-15"
+    },
+    {
+      "age": 72,
+      "symptoms": [
+        "fatigue",
+        "perte_gout_odorat",
+        "douleurs_musculaires",
+        "diarrhee"
+      ],
+      "diagnostic": "covid19",
+      "medications": [
+        "doliprane",
+        "amoxicilline",
+        "azithromycine"
+      ],
+      "date_consultation": "2025-05-20"
+    },
+    {
+      "age": 33,
+      "symptoms": [
+        "maux_de_tete",
+        "perte_gout_odorat",
+        "fatigue"
+      ],
+      "diagnostic": "gastro_enterite",
+      "medications": [
+        "azithromycine",
+        "aspirine",
+        "ibuprofene"
+      ],
+      "date_consultation": "2024-08-04"
+    },
+    {
+      "age": 70,
+      "symptoms": [
+        "douleurs_musculaires",
+        "fatigue",
+        "fièvre",
+        "perte_gout_odorat",
+        "nausees"
+      ],
+      "diagnostic": "grippe",
+      "medications": [
+        "ibuprofene",
+        "azithromycine",
+        "doliprane"
+      ],
+      "date_consultation": "2024-09-24"
+    },
+    {
+      "age": 40,
+      "symptoms": [
+        "fièvre",
+        "perte_gout_odorat",
+        "fatigue",
+        "essoufflement"
+      ],
+      "diagnostic": "gastro_enterite",
+      "medications": [
+        "amoxicilline",
+        "loratadine",
+        "paracetamol"
+      ],
+      "date_consultation": "2025-05-12"
+    },
+    {
+      "age": 21,
+      "symptoms": [
+        "maux_de_tete",
+        "congestion_nasale",
+        "eruption_cutanee"
+      ],
+      "diagnostic": "grippe",
+      "medications": [
+        "omeprazole",
+        "azithromycine",
+        "loratadine"
+      ],
+      "date_consultation": "2025-04-26"
+    },
+    {
+      "age": 43,
+      "symptoms": [
+        "essoufflement",
+        "congestion_nasale",
+        "diarrhee"
+      ],
+      "diagnostic": "gastro_enterite",
+      "medications": [
+        "azithromycine",
+        "doliprane",
+        "amoxicilline"
+      ],
+      "date_consultation": "2025-05-27"
+    },
+    {
+      "age": 37,
+      "symptoms": [
+        "maux_de_gorge",
+        "eruption_cutanee",
+        "maux_de_tete",
+        "fièvre"
+      ],
+      "diagnostic": "gastro_enterite",
+      "medications": [
+        "amoxicilline",
+        "aspirine",
+        "doliprane"
+      ],
+      "date_consultation": "2024-06-28"
+    },
+    {
+      "age": 81,
+      "symptoms": [
+        "nausees",
+        "perte_gout_odorat",
+        "maux_de_tete",
+        "fièvre",
+        "fatigue"
+      ],
+      "diagnostic": "rhume",
+      "medications": [
+        "loratadine",
+        "amoxicilline"
+      ],
+      "date_consultation": "2025-04-03"
+    },
+    {
+      "age": 44,
+      "symptoms": [
+        "fatigue",
+        "congestion_nasale"
+      ],
+      "diagnostic": "infection_urinaire",
+      "medications": [
+        "azithromycine",
+        "omeprazole",
+        "ibuprofene"
+      ],
+      "date_consultation": "2025-02-27"
+    },
+    {
+      "age": 35,
+      "symptoms": [
+        "diarrhee",
+        "maux_de_tete",
+        "eruption_cutanee",
+        "fatigue"
+      ],
+      "diagnostic": "rhume",
+      "medications": [
+        "doliprane",
+        "azithromycine",
+        "loratadine"
+      ],
+      "date_consultation": "2024-07-10"
+    },
+    {
+      "age": 61,
+      "symptoms": [
+        "eruption_cutanee",
+        "maux_de_gorge"
+      ],
+      "diagnostic": "gastro_enterite",
+      "medications": [
+        "ibuprofene"
+      ],
+      "date_consultation": "2024-07-26"
+    },
+    {
+      "age": 28,
+      "symptoms": [
+        "douleurs_musculaires",
+        "fièvre",
+        "essoufflement",
+        "maux_de_gorge",
+        "eruption_cutanee"
+      ],
+      "diagnostic": "bronchite",
+      "medications": [
+        "ibuprofene",
+        "doliprane",
+        "omeprazole"
+      ],
+      "date_consultation": "2025-02-05"
+    },
+    {
+      "age": 29,
+      "symptoms": [
+        "essoufflement",
+        "diarrhee",
+        "toux",
+        "maux_de_tete",
+        "congestion_nasale"
+      ],
+      "diagnostic": "covid19",
+      "medications": [
+        "paracetamol",
+        "doliprane",
+        "ibuprofene"
+      ],
+      "date_consultation": "2024-07-24"
+    },
+    {
+      "age": 20,
+      "symptoms": [
+        "fatigue",
+        "eruption_cutanee",
+        "diarrhee",
+        "maux_de_tete",
+        "congestion_nasale"
+      ],
+      "diagnostic": "infection_urinaire",
+      "medications": [
+        "doliprane",
+        "omeprazole",
+        "aspirine"
+      ],
+      "date_consultation": "2024-11-30"
+    },
+    {
+      "age": 63,
+      "symptoms": [
+        "essoufflement",
+        "diarrhee",
+        "toux",
+        "eruption_cutanee"
+      ],
+      "diagnostic": "angine",
+      "medications": [
+        "omeprazole",
+        "loratadine",
+        "doliprane"
+      ],
+      "date_consultation": "2025-03-14"
+    }
+  ]
+}
