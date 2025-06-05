@@ -12,16 +12,119 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-app = Flask(__name__, static_folder='static', static_url_path='')
-CORS(app)
+# Initialize Flask app
+def create_app():
+    app = Flask(__name__, static_folder='static', static_url_path='')
+    CORS(app)
 
-DB_PATH = 'data/raw/medical_data.db'
+    # Configuration
+    app.config['DB_PATH'] = os.getenv('DB_PATH', 'data/raw/medical_data.db')
+    app.config['JSON_PATH'] = os.getenv('JSON_PATH', 'data/raw/medical_data.json')
 
-def load_data():
+    # Store data and expert system in app context
+    with app.app_context():
+        try:
+            app.data = load_data(app.config['DB_PATH'], app.config['JSON_PATH'])
+            rules = extract_rules(app.data)
+            app.expert = ExpertSystem(rules)
+            logger.info("✅ Système expert initialisé avec succès.")
+        except Exception as e:
+            logger.error(f"⚠️ Erreur d'initialisation: {str(e)}")
+            app.data = None
+            app.expert = None
+
+    @app.route('/')
+    def home():
+        """Page d'accueil"""
+        try:
+            return send_from_directory(app.static_folder, 'index.html')
+        except Exception as e:
+            logger.error(f"Erreur lors du chargement de la page d'accueil: {str(e)}")
+            return jsonify({"error": "Internal Server Error"}), 500
+
+    @app.route('/health')
+    def health():
+        """Endpoint de santé pour le monitoring"""
+        try:
+            if app.data is None or app.expert is None:
+                return jsonify({
+                    "status": "unhealthy",
+                    "error": "System not properly initialized"
+                }), 500
+
+            # Vérification de la connexion à la base de données
+            conn = sqlite3.connect(app.config['DB_PATH'])
+            conn.close()
+            return jsonify({
+                "status": "healthy",
+                "timestamp": datetime.now().isoformat()
+            })
+        except Exception as e:
+            logger.error(f"Échec du health check: {str(e)}")
+            return jsonify({
+                "status": "unhealthy",
+                "error": str(e)
+            }), 500
+
+    @app.route('/api/symptoms', methods=['GET'])
+    def get_symptoms():
+        """Retourne la liste des symptômes possibles"""
+        try:
+            if app.data is None:
+                return jsonify({"error": "System not initialized"}), 500
+
+            # Extraction de tous les symptômes uniques
+            all_symptoms = set()
+            for symptoms in app.data['symptoms_list']:
+                if isinstance(symptoms, list):
+                    all_symptoms.update(symptoms)
+            
+            return jsonify(sorted(list(all_symptoms)))
+        
+        except Exception as e:
+            logger.error(f"Erreur lors de la récupération des symptômes: {str(e)}")
+            return jsonify({"error": str(e)}), 500
+
+    @app.route('/api/diagnose', methods=['POST'])
+    def diagnose():
+        """Endpoint de diagnostic"""
+        try:
+            if app.data is None or app.expert is None:
+                return jsonify({"error": "System not initialized"}), 500
+
+            # Vérification des données d'entrée
+            request_data = request.get_json()
+            if not request_data or 'symptoms' not in request_data:
+                return jsonify({"error": "Symptoms are required"}), 400
+            
+            symptoms = request_data['symptoms']
+            if not isinstance(symptoms, list) or len(symptoms) == 0:
+                return jsonify({"error": "Symptoms must be a non-empty list"}), 400
+            
+            # Calcul du diagnostic
+            diagnosis = calculate_diagnosis(symptoms, app.data)
+            if diagnosis is None:
+                return jsonify({
+                    "error": "Unable to make a diagnosis with the given symptoms"
+                }), 400
+            
+            return jsonify({
+                "symptoms": symptoms,
+                "diagnoses": diagnosis,
+                "timestamp": datetime.now().isoformat()
+            })
+        
+        except Exception as e:
+            logger.error(f"Erreur lors du diagnostic: {str(e)}")
+            return jsonify({"error": str(e)}), 500
+
+    return app
+
+def load_data(db_path, json_path):
     """Charge les données depuis SQLite et JSON"""
     try:
         # Connexion SQLite
-        conn = sqlite3.connect(DB_PATH)
+        conn = sqlite3.connect(db_path)
         
         # Chargement des données SQLite
         patients_df = pd.read_sql_query("""
@@ -37,7 +140,7 @@ def load_data():
         )
         
         # Chargement des données JSON
-        with open('data/raw/medical_data.json', 'r') as f:
+        with open(json_path, 'r') as f:
             json_data = json.load(f)
         
         # Création d'un DataFrame à partir des données JSON
@@ -57,7 +160,7 @@ def load_data():
     
     except Exception as e:
         logger.error(f"Erreur lors du chargement des données: {str(e)}")
-        return None
+        raise
 
 def extract_rules(data, min_support=0.05):
     """
@@ -98,84 +201,6 @@ class ExpertSystem:
             return matches.sort_values(by='confidence', ascending=False).head(5).to_dict(orient='records')
         except Exception as e:
             raise RuntimeError(f"Erreur pendant le diagnostic : {e}")
-
-# Initialisation du système expert
-expert = None
-try:
-    logger.info("Chargement initial des données...")
-    data = load_data()
-    if data is None:
-        raise RuntimeError("Échec du chargement initial des données")
-    rules = extract_rules(data)
-    expert = ExpertSystem(rules)
-    print("✅ Système expert initialisé avec succès.")
-except Exception as e:
-    logger.error(f"Erreur critique lors du démarrage: {str(e)}")
-    raise
-
-# Routes
-@app.route('/')
-def home():
-    """Page d'accueil"""
-    return render_template('index.html')
-
-@app.route('/health')
-def health():
-    """Endpoint de santé pour le monitoring"""
-    try:
-        # Vérification de la connexion à la base de données
-        conn = sqlite3.connect(DB_PATH)
-        conn.close()
-        return jsonify({"status": "healthy", "timestamp": datetime.now().isoformat()})
-    except Exception as e:
-        logger.error(f"Échec du health check: {str(e)}")
-        return jsonify({"status": "unhealthy", "error": str(e)}), 500
-
-@app.route('/api/symptoms', methods=['GET'])
-def get_symptoms():
-    """Retourne la liste des symptômes possibles"""
-    try:
-        # Extraction de tous les symptômes uniques
-        all_symptoms = set()
-        for symptoms in data['symptoms_list']:
-            if isinstance(symptoms, list):
-                all_symptoms.update(symptoms)
-        
-        return jsonify(sorted(list(all_symptoms)))
-    
-    except Exception as e:
-        logger.error(f"Erreur lors de la récupération des symptômes: {str(e)}")
-        return jsonify({"error": str(e)}), 500
-
-@app.route('/api/diagnose', methods=['POST'])
-def diagnose():
-    """Endpoint de diagnostic"""
-    try:
-        # Vérification des données d'entrée
-        request_data = request.get_json()
-        if not request_data or 'symptoms' not in request_data:
-            return jsonify({"error": "Symptoms are required"}), 400
-        
-        symptoms = request_data['symptoms']
-        if not isinstance(symptoms, list) or len(symptoms) == 0:
-            return jsonify({"error": "Symptoms must be a non-empty list"}), 400
-        
-        # Calcul du diagnostic
-        diagnosis = calculate_diagnosis(symptoms, data)
-        if diagnosis is None:
-            return jsonify({
-                "error": "Unable to make a diagnosis with the given symptoms"
-            }), 400
-        
-        return jsonify({
-            "symptoms": symptoms,
-            "diagnoses": diagnosis,
-            "timestamp": datetime.now().isoformat()
-        })
-    
-    except Exception as e:
-        logger.error(f"Erreur lors du diagnostic: {str(e)}")
-        return jsonify({"error": str(e)}), 500
 
 def calculate_diagnosis(symptoms, data):
     """Calcule le diagnostic le plus probable basé sur les symptômes"""
@@ -232,6 +257,8 @@ def calculate_diagnosis(symptoms, data):
         logger.error(f"Erreur lors du diagnostic: {str(e)}")
         return None
 
+# Modified main block
 if __name__ == '__main__':
+    app = create_app()
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
