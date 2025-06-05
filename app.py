@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import json
 import random
+import threading
 from datetime import datetime, timedelta
 from flask import Flask, request, jsonify, render_template_string
 from flask_cors import CORS
@@ -17,6 +18,9 @@ app = Flask(__name__)
 CORS(app)
 
 DB_PATH = 'data/raw/medical_data.db'
+
+# Lock pour éviter les accès concurrents lors de la création de la DB
+db_lock = threading.Lock()
 
 # Template HTML intégré
 HTML_TEMPLATE = '''
@@ -372,59 +376,76 @@ def generate_medical_data():
     return patients, symptoms_records
 
 def create_sqlite_database():
-    """Crée et remplit la base de données SQLite"""
+    """Crée et remplit la base de données SQLite avec protection contre les accès concurrents"""
     try:
-        logger.info("Création de la base de données SQLite...")
-        
-        # Création du répertoire si nécessaire
-        os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
-        
-        # Génération des données
-        patients, symptoms_records = generate_medical_data()
-        
-        # Connexion à SQLite
-        conn = sqlite3.connect(DB_PATH)
-        cursor = conn.cursor()
-        
-        # Création des tables
-        cursor.execute('''
-            CREATE TABLE IF NOT EXISTS patients (
-                id INTEGER PRIMARY KEY,
-                age INTEGER NOT NULL,
-                diagnostic TEXT NOT NULL
-            )
-        ''')
-        
-        cursor.execute('''
-            CREATE TABLE IF NOT EXISTS symptoms (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                patient_id INTEGER NOT NULL,
-                symptom TEXT NOT NULL,
-                FOREIGN KEY (patient_id) REFERENCES patients (id)
-            )
-        ''')
-        
-        # Insertion des patients
-        for patient in patients:
-            cursor.execute(
-                'INSERT INTO patients (id, age, diagnostic) VALUES (?, ?, ?)',
-                (patient['id'], patient['age'], patient['diagnostic'])
-            )
-        
-        # Insertion des symptômes
-        for symptom_record in symptoms_records:
-            cursor.execute(
-                'INSERT INTO symptoms (patient_id, symptom) VALUES (?, ?)',
-                (symptom_record['patient_id'], symptom_record['symptom'])
-            )
-        
-        conn.commit()
-        conn.close()
-        
-        logger.info(f"Base de données SQLite créée avec {len(patients)} patients")
-        
+        with db_lock:  # Protection contre les accès concurrents
+            # Vérifier à nouveau si la DB existe après avoir acquis le lock
+            if os.path.exists(DB_PATH):
+                logger.info("Base de données déjà existante, chargement...")
+                return
+                
+            logger.info("Création de la base de données SQLite...")
+            
+            # Création du répertoire si nécessaire
+            os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
+            
+            # Génération des données
+            patients, symptoms_records = generate_medical_data()
+            
+            # Connexion à SQLite
+            conn = sqlite3.connect(DB_PATH)
+            cursor = conn.cursor()
+            
+            # Suppression des tables existantes si elles existent
+            cursor.execute('DROP TABLE IF EXISTS symptoms')
+            cursor.execute('DROP TABLE IF EXISTS patients')
+            
+            # Création des tables
+            cursor.execute('''
+                CREATE TABLE patients (
+                    id INTEGER PRIMARY KEY,
+                    age INTEGER NOT NULL,
+                    diagnostic TEXT NOT NULL
+                )
+            ''')
+            
+            cursor.execute('''
+                CREATE TABLE symptoms (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    patient_id INTEGER NOT NULL,
+                    symptom TEXT NOT NULL,
+                    FOREIGN KEY (patient_id) REFERENCES patients (id)
+                )
+            ''')
+            
+            # Insertion des patients
+            for patient in patients:
+                cursor.execute(
+                    'INSERT INTO patients (id, age, diagnostic) VALUES (?, ?, ?)',
+                    (patient['id'], patient['age'], patient['diagnostic'])
+                )
+            
+            # Insertion des symptômes
+            for symptom_record in symptoms_records:
+                cursor.execute(
+                    'INSERT INTO symptoms (patient_id, symptom) VALUES (?, ?)',
+                    (symptom_record['patient_id'], symptom_record['symptom'])
+                )
+            
+            conn.commit()
+            conn.close()
+            
+            logger.info(f"Base de données SQLite créée avec {len(patients)} patients")
+            
     except Exception as e:
         logger.error(f"Erreur lors de la création de la base SQLite: {str(e)}")
+        # Si erreur, on supprime le fichier partiel pour éviter la corruption
+        if os.path.exists(DB_PATH):
+            try:
+                os.remove(DB_PATH)
+                logger.info("Fichier de base de données corrompu supprimé")
+            except:
+                pass
         raise
 
 def create_json_data():
@@ -455,6 +476,7 @@ def create_json_data():
         
         # Sauvegarde
         json_path = 'data/raw/medical_data.json'
+        os.makedirs(os.path.dirname(json_path), exist_ok=True)
         with open(json_path, 'w', encoding='utf-8') as f:
             json.dump(json_data, f, ensure_ascii=False, indent=2)
         
@@ -473,38 +495,51 @@ def load_data():
             create_sqlite_database()
             create_json_data()
         
-        # Connexion SQLite
-        conn = sqlite3.connect(DB_PATH)
-        
-        # Chargement des données SQLite
-        patients_df = pd.read_sql_query("""
-            SELECT p.*, GROUP_CONCAT(s.symptom) as symptoms_list
-            FROM patients p
-            LEFT JOIN symptoms s ON p.id = s.patient_id
-            GROUP BY p.id
-        """, conn)
-        
+        # Connexion SQLite avec retry en cas d'erreur
+        max_retries = 3
+        for attempt in range(max_retries):
+            try:
+                conn = sqlite3.connect(DB_PATH, timeout=30)
+                
+                # Chargement des données SQLite
+                patients_df = pd.read_sql_query("""
+                    SELECT p.*, GROUP_CONCAT(s.symptom) as symptoms_list
+                    FROM patients p
+                    LEFT JOIN symptoms s ON p.id = s.patient_id
+                    GROUP BY p.id
+                """, conn)
+                
+                conn.close()
+                break
+                
+            except sqlite3.Error as e:
+                logger.warning(f"Tentative {attempt + 1} échouée: {str(e)}")
+                if attempt == max_retries - 1:
+                    raise
+                
         # Conversion des symptômes en liste
         patients_df['symptoms_list'] = patients_df['symptoms_list'].apply(
             lambda x: x.split(',') if isinstance(x, str) else []
         )
         
-        conn.close()
-        
         # Chargement des données JSON si disponible
         json_path = 'data/raw/medical_data.json'
         if os.path.exists(json_path):
-            with open(json_path, 'r', encoding='utf-8') as f:
-                json_data = json.load(f)
-            
-            json_df = pd.json_normalize(json_data['patients'])
-            json_df = json_df.rename(columns={'symptoms': 'symptoms_list'})
-            
-            # Fusion des données
-            combined_data = pd.concat([
-                patients_df[['age', 'diagnostic', 'symptoms_list']],
-                json_df[['age', 'diagnostic', 'symptoms_list']]
-            ], ignore_index=True)
+            try:
+                with open(json_path, 'r', encoding='utf-8') as f:
+                    json_data = json.load(f)
+                
+                json_df = pd.json_normalize(json_data['patients'])
+                json_df = json_df.rename(columns={'symptoms': 'symptoms_list'})
+                
+                # Fusion des données
+                combined_data = pd.concat([
+                    patients_df[['age', 'diagnostic', 'symptoms_list']],
+                    json_df[['age', 'diagnostic', 'symptoms_list']]
+                ], ignore_index=True)
+            except Exception as e:
+                logger.warning(f"Erreur lors du chargement JSON: {str(e)}")
+                combined_data = patients_df
         else:
             combined_data = patients_df
         
@@ -525,7 +560,7 @@ def calculate_diagnosis(symptoms, data):
         
         if len(matching_cases) == 0:
             logger.warning(f"Aucun cas trouvé pour les symptômes: {symptoms}")
-            return None
+            return []
         
         # Calcul des scores pour chaque diagnostic
         diagnosis_scores = {}
@@ -568,23 +603,31 @@ def calculate_diagnosis(symptoms, data):
     
     except Exception as e:
         logger.error(f"Erreur lors du diagnostic: {str(e)}")
-        return None
+        return []
 
-# Initialisation des données
+# Initialisation des données au démarrage
 data = None
-try:
-    logger.info("Initialisation du système expert médical...")
-    data = load_data()
-    if data is None:
-        raise RuntimeError("Échec du chargement initial des données")
-    logger.info("✅ Système expert initialisé avec succès.")
-except Exception as e:
-    logger.error(f"Erreur critique lors du démarrage: {str(e)}")
+def initialize_data():
+    global data
+    try:
+        logger.info("Initialisation du système expert médical...")
+        data = load_data()
+        if data is None or len(data) == 0:
+            raise RuntimeError("Échec du chargement initial des données")
+        logger.info("✅ Système expert initialisé avec succès.")
+        return True
+    except Exception as e:
+        logger.error(f"Erreur critique lors du démarrage: {str(e)}")
+        return False
 
 # Routes
 @app.route('/')
 def home():
     """Page d'accueil"""
+    # Vérification que les données sont chargées
+    if data is None:
+        if not initialize_data():
+            return "Système en cours d'initialisation, veuillez patienter...", 503
     return render_template_string(HTML_TEMPLATE)
 
 @app.route('/health')
@@ -593,21 +636,42 @@ def health():
     try:
         # Vérification de la connexion à la base de données
         if os.path.exists(DB_PATH):
-            conn = sqlite3.connect(DB_PATH)
+            conn = sqlite3.connect(DB_PATH, timeout=5)
+            cursor = conn.cursor()
+            cursor.execute("SELECT COUNT(*) FROM patients")
+            count = cursor.fetchone()[0]
             conn.close()
-            return jsonify({"status": "healthy", "timestamp": datetime.now().isoformat()})
+            
+            status = {
+                "status": "healthy", 
+                "timestamp": datetime.now().isoformat(),
+                "database": "connected",
+                "patients_count": count,
+                "data_loaded": data is not None
+            }
+            return jsonify(status)
         else:
-            return jsonify({"status": "unhealthy", "error": "Database not found"}), 500
+            return jsonify({
+                "status": "unhealthy", 
+                "error": "Database not found",
+                "timestamp": datetime.now().isoformat()
+            }), 500
     except Exception as e:
         logger.error(f"Échec du health check: {str(e)}")
-        return jsonify({"status": "unhealthy", "error": str(e)}), 500
+        return jsonify({
+            "status": "unhealthy", 
+            "error": str(e),
+            "timestamp": datetime.now().isoformat()
+        }), 500
 
 @app.route('/api/symptoms', methods=['GET'])
 def get_symptoms():
     """Retourne la liste des symptômes possibles"""
     try:
+        # Initialisation des données si nécessaire
         if data is None:
-            raise ValueError("Données non disponibles")
+            if not initialize_data():
+                return jsonify({"error": "Système non initialisé"}), 503
         
         # Extraction de tous les symptômes uniques
         all_symptoms = set()
@@ -625,8 +689,10 @@ def get_symptoms():
 def diagnose():
     """Endpoint de diagnostic"""
     try:
+        # Initialisation des données si nécessaire
         if data is None:
-            return jsonify({"error": "Système non initialisé"}), 500
+            if not initialize_data():
+                return jsonify({"error": "Système non initialisé"}), 503
         
         # Vérification des données d'entrée
         request_data = request.get_json()
@@ -642,7 +708,7 @@ def diagnose():
         
         return jsonify({
             "symptoms": symptoms,
-            "diagnoses": diagnosis if diagnosis else [],
+            "diagnoses": diagnosis,
             "timestamp": datetime.now().isoformat()
         })
     
@@ -650,6 +716,11 @@ def diagnose():
         logger.error(f"Erreur lors du diagnostic: {str(e)}")
         return jsonify({"error": str(e)}), 500
 
+# Initialisation au démarrage uniquement si ce script est exécuté directement
 if __name__ == '__main__':
+    initialize_data()
     port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=port, debug=False)
+else:
+    # Pour Gunicorn, initialisation lazy
+    pass
