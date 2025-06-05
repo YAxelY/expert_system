@@ -19,7 +19,6 @@ RUN pip install --no-cache-dir --upgrade pip && \
 
 # Copie du code source
 COPY app.py .
-COPY data_generator.py .
 
 # Création du répertoire pour les données
 RUN mkdir -p data/raw
@@ -29,9 +28,6 @@ ENV FLASK_APP=app.py
 ENV FLASK_ENV=production
 ENV PORT=10000
 ENV PYTHONUNBUFFERED=1
-
-# Génération des données initiales
-RUN python data_generator.py
 
 # Exposition du port
 EXPOSE $PORT

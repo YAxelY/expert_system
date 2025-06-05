@@ -1,10 +1,12 @@
 import os
 import sqlite3
 import pandas as pd
+import numpy as np
+import json
+import random
+from datetime import datetime, timedelta
 from flask import Flask, request, jsonify, render_template_string
 from flask_cors import CORS
-import json
-from datetime import datetime
 import logging
 
 # Configuration du logging
@@ -311,13 +313,163 @@ HTML_TEMPLATE = '''
 </html>
 '''
 
+def generate_medical_data():
+    """Génère des données médicales d'exemple pour le système expert"""
+    logger.info("Génération des données médicales...")
+    
+    # Définition des diagnostics et leurs symptômes associés
+    medical_data = {
+        'grippe': ['fievre', 'toux', 'fatigue', 'courbatures', 'mal_de_tete', 'frissons'],
+        'rhume': ['toux', 'nez_bouche', 'eternuements', 'mal_de_gorge', 'fatigue_legere'],
+        'angine': ['mal_de_gorge', 'fievre', 'difficulte_deglutition', 'ganglions_gonfles'],
+        'bronchite': ['toux_persistante', 'expectorations', 'essoufflement', 'douleur_thoracique'],
+        'pneumonie': ['fievre_elevee', 'toux', 'essoufflement', 'douleur_thoracique', 'fatigue'],
+        'gastro_enterite': ['nausees', 'vomissements', 'diarrhee', 'douleur_abdominale', 'fievre'],
+        'migraine': ['mal_de_tete_intense', 'nausees', 'sensibilite_lumiere', 'vomissements'],
+        'allergie': ['eternuements', 'yeux_rouges', 'nez_bouche', 'demangeaisons', 'toux_seche'],
+        'hypertension': ['mal_de_tete', 'vertiges', 'vision_floue', 'fatigue', 'essoufflement'],
+        'diabete': ['soif_excessive', 'urination_frequente', 'fatigue', 'vision_floue', 'cicatrisation_lente']
+    }
+    
+    # Génération des patients
+    patients = []
+    symptoms_records = []
+    
+    for i in range(1000):  # 1000 patients d'exemple
+        # Sélection aléatoire d'un diagnostic
+        diagnostic = random.choice(list(medical_data.keys()))
+        symptoms_list = medical_data[diagnostic]
+        
+        # Sélection de 2-5 symptômes pour ce patient
+        num_symptoms = random.randint(2, min(5, len(symptoms_list)))
+        patient_symptoms = random.sample(symptoms_list, num_symptoms)
+        
+        # Ajout de quelques symptômes "parasites" parfois
+        if random.random() < 0.2:  # 20% de chance
+            all_symptoms = set()
+            for symp_list in medical_data.values():
+                all_symptoms.update(symp_list)
+            other_symptoms = list(all_symptoms - set(symptoms_list))
+            if other_symptoms:
+                patient_symptoms.append(random.choice(other_symptoms))
+        
+        # Création du patient
+        patient = {
+            'id': i + 1,
+            'age': random.randint(18, 80),
+            'diagnostic': diagnostic,
+            'symptoms_list': patient_symptoms
+        }
+        patients.append(patient)
+        
+        # Création des enregistrements de symptômes pour SQLite
+        for symptom in patient_symptoms:
+            symptoms_records.append({
+                'patient_id': i + 1,
+                'symptom': symptom
+            })
+    
+    return patients, symptoms_records
+
+def create_sqlite_database():
+    """Crée et remplit la base de données SQLite"""
+    try:
+        logger.info("Création de la base de données SQLite...")
+        
+        # Création du répertoire si nécessaire
+        os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
+        
+        # Génération des données
+        patients, symptoms_records = generate_medical_data()
+        
+        # Connexion à SQLite
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+        
+        # Création des tables
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS patients (
+                id INTEGER PRIMARY KEY,
+                age INTEGER NOT NULL,
+                diagnostic TEXT NOT NULL
+            )
+        ''')
+        
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS symptoms (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                patient_id INTEGER NOT NULL,
+                symptom TEXT NOT NULL,
+                FOREIGN KEY (patient_id) REFERENCES patients (id)
+            )
+        ''')
+        
+        # Insertion des patients
+        for patient in patients:
+            cursor.execute(
+                'INSERT INTO patients (id, age, diagnostic) VALUES (?, ?, ?)',
+                (patient['id'], patient['age'], patient['diagnostic'])
+            )
+        
+        # Insertion des symptômes
+        for symptom_record in symptoms_records:
+            cursor.execute(
+                'INSERT INTO symptoms (patient_id, symptom) VALUES (?, ?)',
+                (symptom_record['patient_id'], symptom_record['symptom'])
+            )
+        
+        conn.commit()
+        conn.close()
+        
+        logger.info(f"Base de données SQLite créée avec {len(patients)} patients")
+        
+    except Exception as e:
+        logger.error(f"Erreur lors de la création de la base SQLite: {str(e)}")
+        raise
+
+def create_json_data():
+    """Crée un fichier JSON avec des données supplémentaires"""
+    try:
+        logger.info("Création des données JSON...")
+        
+        # Génération de données supplémentaires
+        patients, _ = generate_medical_data()
+        
+        # Formatage pour JSON
+        json_data = {
+            "patients": [
+                {
+                    "id": patient['id'],
+                    "age": patient['age'],
+                    "diagnostic": patient['diagnostic'],
+                    "symptoms": patient['symptoms_list']
+                }
+                for patient in patients[:500]  # Seulement 500 pour le JSON
+            ],
+            "metadata": {
+                "created_at": datetime.now().isoformat(),
+                "total_patients": 500,
+                "data_source": "generated"
+            }
+        }
+        
+        # Sauvegarde
+        json_path = 'data/raw/medical_data.json'
+        with open(json_path, 'w', encoding='utf-8') as f:
+            json.dump(json_data, f, ensure_ascii=False, indent=2)
+        
+        logger.info(f"Fichier JSON créé: {json_path}")
+        
+    except Exception as e:
+        logger.error(f"Erreur lors de la création du JSON: {str(e)}")
+        raise
+
 def load_data():
     """Charge les données depuis SQLite et JSON"""
     try:
         # Vérification de l'existence du fichier de base de données
         if not os.path.exists(DB_PATH):
             logger.warning("Base de données non trouvée, génération des données...")
-            from data_generator import create_sqlite_database, create_json_data
             create_sqlite_database()
             create_json_data()
         
@@ -421,7 +573,7 @@ def calculate_diagnosis(symptoms, data):
 # Initialisation des données
 data = None
 try:
-    logger.info("Chargement initial des données...")
+    logger.info("Initialisation du système expert médical...")
     data = load_data()
     if data is None:
         raise RuntimeError("Échec du chargement initial des données")
