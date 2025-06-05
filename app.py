@@ -162,7 +162,7 @@ def diagnose():
         
         # Calcul du diagnostic
         diagnosis = calculate_diagnosis(symptoms, data)
-    if diagnosis is None:
+        if diagnosis is None:
             return jsonify({
                 "error": "Unable to make a diagnosis with the given symptoms"
             }), 400
