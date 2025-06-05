@@ -18,19 +18,33 @@ RUN apt-get update && apt-get install -y \
 # Étape 5 : installer les dépendances Python
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Étape 6 : créer dossier db (si manquant)
+# Étape 6 : vérifier les versions installées
+RUN pip freeze
+
+# Étape 7 : créer dossier db (si manquant)
 RUN mkdir -p data/raw
 
-# Étape 7 : générer les données initiales
+# Étape 8 : générer les données initiales
 RUN python data_generator.py
 
-# Étape 8 : variables d'environnement
+# Étape 9 : variables d'environnement
 ENV FLASK_APP=app.py
 ENV FLASK_ENV=production
 ENV PORT=8000
+ENV PYTHONUNBUFFERED=1
 
-# Étape 9 : exposer le port
+# Étape 10 : exposer le port
 EXPOSE 8000
 
-# Étape 10 : lancer Flask
-CMD gunicorn --bind 0.0.0.0:$PORT app:app
+# Étape 11 : healthcheck
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:${PORT}/health || exit 1
+
+# Étape 12 : lancer Flask
+CMD gunicorn --bind 0.0.0.0:$PORT \
+    --workers=2 \
+    --timeout=120 \
+    --log-level=info \
+    --access-logfile=- \
+    --error-logfile=- \
+    app:app

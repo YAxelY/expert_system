@@ -6,6 +6,11 @@ from flask_cors import CORS
 from mlxtend.frequent_patterns import apriori, association_rules
 import json
 from datetime import datetime
+import logging
+
+# Configuration du logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 app = Flask(__name__, static_folder='static', static_url_path='')
 CORS(app)
@@ -47,10 +52,11 @@ def load_data():
         # Uniformisation des noms de colonnes
         combined_data = combined_data.rename(columns={'symptoms': 'symptoms_list'})
         
+        logger.info(f"Données chargées avec succès: {len(combined_data)} entrées")
         return combined_data
     
     except Exception as e:
-        print(f"Erreur lors du chargement des données: {str(e)}")
+        logger.error(f"Erreur lors du chargement des données: {str(e)}")
         return None
 
 def extract_rules(data, min_support=0.05):
@@ -80,12 +86,16 @@ class ExpertSystem:
 # Initialisation du système expert
 expert = None
 try:
+    logger.info("Chargement initial des données...")
     data = load_data()
+    if data is None:
+        raise RuntimeError("Échec du chargement initial des données")
     rules = extract_rules(data)
     expert = ExpertSystem(rules)
     print("✅ Système expert initialisé avec succès.")
 except Exception as e:
-    print("❌ Échec de l'initialisation :", e)
+    logger.error(f"Erreur critique lors du démarrage: {str(e)}")
+    raise
 
 # Routes
 @app.route('/')
@@ -95,7 +105,15 @@ def home():
 
 @app.route('/health')
 def health():
-    return jsonify({"status": "ok"})
+    """Endpoint de santé pour le monitoring"""
+    try:
+        # Vérification de la connexion à la base de données
+        conn = sqlite3.connect(DB_PATH)
+        conn.close()
+        return jsonify({"status": "healthy", "timestamp": datetime.now().isoformat()})
+    except Exception as e:
+        logger.error(f"Échec du health check: {str(e)}")
+        return jsonify({"status": "unhealthy", "error": str(e)}), 500
 
 @app.route('/api/symptoms', methods=['GET'])
 def get_symptoms():
@@ -110,6 +128,7 @@ def get_symptoms():
         return jsonify(sorted(list(all_symptoms)))
     
     except Exception as e:
+        logger.error(f"Erreur lors de la récupération des symptômes: {str(e)}")
         return jsonify({"error": str(e)}), 500
 
 @app.route('/api/diagnose', methods=['POST'])
@@ -139,6 +158,7 @@ def diagnose():
         })
     
     except Exception as e:
+        logger.error(f"Erreur lors du diagnostic: {str(e)}")
         return jsonify({"error": str(e)}), 500
 
 def calculate_diagnosis(symptoms, data):
@@ -150,6 +170,7 @@ def calculate_diagnosis(symptoms, data):
         )]
         
         if len(matching_cases) == 0:
+            logger.warning(f"Aucun cas trouvé pour les symptômes: {symptoms}")
             return None
         
         # Calcul des scores pour chaque diagnostic
@@ -182,14 +203,17 @@ def calculate_diagnosis(symptoms, data):
         )
         
         # Retourne les 3 meilleurs diagnostics avec leurs scores
-        return [
+        results = [
             {"diagnostic": diag, "probability": round(score * 100, 2)}
             for diag, score in sorted_diagnoses[:3]
             if score > 0.1  # Seuil minimal de 10%
         ]
+        
+        logger.info(f"Diagnostic calculé avec succès: {results}")
+        return results
     
     except Exception as e:
-        print(f"Erreur lors du diagnostic: {str(e)}")
+        logger.error(f"Erreur lors du diagnostic: {str(e)}")
         return None
 
 if __name__ == '__main__':
