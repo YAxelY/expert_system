@@ -1,50 +1,70 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Système Expert Médical</title>
-    <style>
-        body { font-family: sans-serif; background: #f4f4f4; padding: 2em; }
-        .container { background: #fff; padding: 2em; max-width: 600px; margin: auto; border-radius: 10px; box-shadow: 0 0 10px #ccc; }
-        textarea, button { width: 100%; padding: 1em; margin-top: 1em; }
-        #result { margin-top: 1em; background: #e9ffe9; padding: 1em; border-radius: 8px; min-height: 2em; white-space: pre-wrap; }
-    </style>
+  <meta charset="UTF-8">
+  <title>Système Expert Médical</title>
+  <style>
+    body { font-family: sans-serif; background: #f0f2f5; padding: 2em; }
+    .container { background: white; padding: 2em; max-width: 700px; margin: auto; border-radius: 10px; box-shadow: 0 0 10px #ccc; }
+    textarea, input, button, select {
+      width: 100%; padding: 1em; margin-top: 1em; border-radius: 5px; border: 1px solid #ccc;
+    }
+    #result, #response { background: #e9ffe9; padding: 1em; border-radius: 8px; margin-top: 1em; white-space: pre-wrap; }
+    h2 { text-align: center; }
+  </style>
 </head>
 <body>
-<div class="container">
+  <div class="container">
     <h2>Système Expert Médical</h2>
-    <textarea id="symptoms" placeholder="Ex: fièvre, toux, fatigue"></textarea>
-    <button onclick="sendSymptoms()">Envoyer</button>
+
+    <h4>🩺 Diagnostiquer</h4>
+    <textarea id="symptoms" placeholder="fièvre, toux, fatigue..."></textarea>
+    <button onclick="sendSymptoms()">Diagnostiquer</button>
     <div id="result">Résultat ici...</div>
-</div>
+
+    <hr/>
+
+    <h4>➕ Ajouter un nouveau cas</h4>
+    <input id="age" type="number" placeholder="Âge" />
+    <input id="diagnostic" type="text" placeholder="Diagnostic (ex: paludisme)" />
+    <input id="date_consult" type="date" />
+    <textarea id="add_symptoms" placeholder="Symptômes (ex: fièvre, frissons, vomissements)"></textarea>
+    <textarea id="add_medications" placeholder="Médicaments (ex: paracetamol, quinine)"></textarea>
+    <button onclick="addPatient()">Ajouter</button>
+    <div id="response">Réponse ici...</div>
+  </div>
 
 <script>
-    const API_URL = "/diagnose";
-
-    async function sendSymptoms() {
-        const input = document.getElementById("symptoms").value;
-        const symptoms = input.split(",").map(s => s.trim().toLowerCase());
-        const resDiv = document.getElementById("result");
-        resDiv.textContent = "Chargement...";
-
-        try {
-            const resp = await fetch(API_URL, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ symptoms })
-            });
-
-            const json = await resp.json();
-
-            if (!resp.ok) {
-                throw new Error("Erreur API : " + json.error);
-            }
-
-            resDiv.textContent = JSON.stringify(json, null, 2);
-        } catch (err) {
-            resDiv.textContent = "Erreur: " + err.message;
-        }
+  const postJSON = async (url, data, outputId) => {
+    const out = document.getElementById(outputId);
+    out.textContent = "Chargement...";
+    try {
+      const resp = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+      const json = await resp.json();
+      out.textContent = JSON.stringify(json, null, 2);
+    } catch (e) {
+      out.textContent = "Erreur: " + e.message;
     }
+  }
+
+  function sendSymptoms() {
+    const input = document.getElementById("symptoms").value;
+    const symptoms = input.split(",").map(s => s.trim().toLowerCase());
+    postJSON("/diagnose", { symptoms }, "result");
+  }
+
+  function addPatient() {
+    const age = parseInt(document.getElementById("age").value);
+    const diagnostic = document.getElementById("diagnostic").value.trim().toLowerCase();
+    const date = document.getElementById("date_consult").value;
+    const symptoms = document.getElementById("add_symptoms").value.split(",").map(s => s.trim().toLowerCase());
+    const medications = document.getElementById("add_medications").value.split(",").map(m => m.trim().toLowerCase());
+    postJSON("/add", { age, diagnostic, date_consultation: date, symptoms, medications }, "response");
+  }
 </script>
 </body>
 </html>
