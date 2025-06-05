@@ -1,70 +1,182 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Système Expert Médical</title>
-  <style>
-    body { font-family: sans-serif; background: #f0f2f5; padding: 2em; }
-    .container { background: white; padding: 2em; max-width: 700px; margin: auto; border-radius: 10px; box-shadow: 0 0 10px #ccc; }
-    textarea, input, button, select {
-      width: 100%; padding: 1em; margin-top: 1em; border-radius: 5px; border: 1px solid #ccc;
-    }
-    #result, #response { background: #e9ffe9; padding: 1em; border-radius: 8px; margin-top: 1em; white-space: pre-wrap; }
-    h2 { text-align: center; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Système Expert Médical</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 2rem;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .diagnosis-card {
+            transition: transform 0.2s;
+        }
+        .diagnosis-card:hover {
+            transform: translateY(-5px);
+        }
+        .select2-container {
+            width: 100% !important;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .loading-spinner {
+            width: 3rem;
+            height: 3rem;
+        }
+        #error-message {
+            display: none;
+            margin-top: 1rem;
+        }
+        #results {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h2>Système Expert Médical</h2>
+    <div class="container">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h1 class="card-title text-center mb-4">Système Expert Médical</h1>
+                <form id="diagnosis-form">
+                    <div class="mb-3">
+                        <label for="symptoms" class="form-label">Sélectionnez vos symptômes :</label>
+                        <select class="form-control" id="symptoms" multiple="multiple">
+                            <!-- Les options seront ajoutées dynamiquement -->
+                        </select>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Obtenir un diagnostic</button>
+                    </div>
+                </form>
+            </div>
+        </div>
 
-    <h4>🩺 Diagnostiquer</h4>
-    <textarea id="symptoms" placeholder="fièvre, toux, fatigue..."></textarea>
-    <button onclick="sendSymptoms()">Diagnostiquer</button>
-    <div id="result">Résultat ici...</div>
+        <div id="loading" class="loading">
+            <div class="spinner-border loading-spinner text-primary" role="status">
+                <span class="visually-hidden">Chargement...</span>
+            </div>
+            <p class="mt-2">Analyse des symptômes en cours...</p>
+        </div>
 
-    <hr/>
+        <div id="error-message" class="alert alert-danger" role="alert">
+            <!-- Le message d'erreur sera inséré ici -->
+        </div>
 
-    <h4>➕ Ajouter un nouveau cas</h4>
-    <input id="age" type="number" placeholder="Âge" />
-    <input id="diagnostic" type="text" placeholder="Diagnostic (ex: paludisme)" />
-    <input id="date_consult" type="date" />
-    <textarea id="add_symptoms" placeholder="Symptômes (ex: fièvre, frissons, vomissements)"></textarea>
-    <textarea id="add_medications" placeholder="Médicaments (ex: paracetamol, quinine)"></textarea>
-    <button onclick="addPatient()">Ajouter</button>
-    <div id="response">Réponse ici...</div>
-  </div>
+        <div id="results">
+            <h2 class="mb-4">Diagnostics possibles :</h2>
+            <div id="diagnoses" class="row">
+                <!-- Les résultats seront insérés ici -->
+            </div>
+        </div>
+    </div>
 
-<script>
-  const postJSON = async (url, data, outputId) => {
-    const out = document.getElementById(outputId);
-    out.textContent = "Chargement...";
-    try {
-      const resp = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-      });
-      const json = await resp.json();
-      out.textContent = JSON.stringify(json, null, 2);
-    } catch (e) {
-      out.textContent = "Erreur: " + e.message;
-    }
-  }
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Initialisation de Select2
+            $('#symptoms').select2({
+                placeholder: 'Choisissez un ou plusieurs symptômes',
+                allowClear: true,
+                theme: 'classic'
+            });
 
-  function sendSymptoms() {
-    const input = document.getElementById("symptoms").value;
-    const symptoms = input.split(",").map(s => s.trim().toLowerCase());
-    postJSON("/diagnose", { symptoms }, "result");
-  }
+            // Chargement des symptômes
+            $.get('/api/symptoms')
+                .done(function(symptoms) {
+                    symptoms.forEach(function(symptom) {
+                        $('#symptoms').append(new Option(symptom, symptom));
+                    });
+                })
+                .fail(function(error) {
+                    showError("Erreur lors du chargement des symptômes");
+                });
 
-  function addPatient() {
-    const age = parseInt(document.getElementById("age").value);
-    const diagnostic = document.getElementById("diagnostic").value.trim().toLowerCase();
-    const date = document.getElementById("date_consult").value;
-    const symptoms = document.getElementById("add_symptoms").value.split(",").map(s => s.trim().toLowerCase());
-    const medications = document.getElementById("add_medications").value.split(",").map(m => m.trim().toLowerCase());
-    postJSON("/add", { age, diagnostic, date_consultation: date, symptoms, medications }, "response");
-  }
-</script>
+            // Gestion du formulaire
+            $('#diagnosis-form').on('submit', function(e) {
+                e.preventDefault();
+                
+                const symptoms = $('#symptoms').val();
+                if (!symptoms || symptoms.length === 0) {
+                    showError("Veuillez sélectionner au moins un symptôme");
+                    return;
+                }
+
+                // Réinitialisation et affichage du chargement
+                $('#results').hide();
+                $('#error-message').hide();
+                $('#loading').show();
+
+                // Envoi de la requête
+                $.ajax({
+                    url: '/api/diagnose',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ symptoms: symptoms }),
+                    success: function(response) {
+                        $('#loading').hide();
+                        displayResults(response);
+                    },
+                    error: function(xhr) {
+                        $('#loading').hide();
+                        const error = xhr.responseJSON ? xhr.responseJSON.error : "Erreur lors du diagnostic";
+                        showError(error);
+                    }
+                });
+            });
+
+            function displayResults(response) {
+                const diagnosesContainer = $('#diagnoses');
+                diagnosesContainer.empty();
+
+                response.diagnoses.forEach(function(diagnosis, index) {
+                    const card = $(`
+                        <div class="col-md-4 mb-3">
+                            <div class="card diagnosis-card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">${diagnosis.diagnostic}</h5>
+                                    <div class="progress mb-3">
+                                        <div class="progress-bar" role="progressbar" 
+                                             style="width: ${diagnosis.probability}%" 
+                                             aria-valuenow="${diagnosis.probability}" 
+                                             aria-valuemin="0" 
+                                             aria-valuemax="100">
+                                            ${diagnosis.probability}%
+                                        </div>
+                                    </div>
+                                    <p class="card-text">
+                                        Probabilité: ${diagnosis.probability}%
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    `);
+                    diagnosesContainer.append(card);
+                });
+
+                $('#results').show();
+            }
+
+            function showError(message) {
+                $('#error-message')
+                    .text(message)
+                    .show();
+            }
+        });
+    </script>
 </body>
 </html>
