@@ -60,10 +60,26 @@ def load_data():
         return None
 
 def extract_rules(data, min_support=0.05):
-    features = [col for col in data.columns if col not in ['id', 'age', 'diagnostic', 'date_consultation']]
-    frequent_itemsets = apriori(data[features], min_support=min_support, use_colnames=True)
+    """
+    Transforme la colonne symptoms_list en DataFrame binaire puis applique apriori.
+    """
+    # Liste de tous les symptômes possibles dans le dataset
+    all_symptoms = set()
+    for symptoms in data['symptoms_list']:
+        all_symptoms.update(symptoms)
+    all_symptoms = sorted(all_symptoms)
+
+    # Construction du DataFrame binaire (one-hot)
+    symptoms_df = pd.DataFrame(0, index=data.index, columns=all_symptoms)
+    for idx, symptoms in enumerate(data['symptoms_list']):
+        for symptom in symptoms:
+            symptoms_df.at[idx, symptom] = 1
+
+    logger.info(f"Transformation one-hot : {symptoms_df.shape[0]} lignes, {symptoms_df.shape[1]} colonnes")
+
+    frequent_itemsets = apriori(symptoms_df, min_support=min_support, use_colnames=True)
     rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=0.5)
-    print(f"🔢 Règles extraites : {len(rules)}")
+    logger.info(f"\ud83d\udd22 R\u00e8gles extraites : {len(rules)}")
     return rules
 
 class ExpertSystem:
@@ -146,7 +162,7 @@ def diagnose():
         
         # Calcul du diagnostic
         diagnosis = calculate_diagnosis(symptoms, data)
-        if diagnosis is None:
+    if diagnosis is None:
             return jsonify({
                 "error": "Unable to make a diagnosis with the given symptoms"
             }), 400
