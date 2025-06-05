@@ -1,46 +1,46 @@
-# Étape 1 : base Python légère
-FROM python:3.8-slim
+# Utilisation d'une image Python légère
+FROM python:3.9-slim
 
-# Étape 2 : dossier de travail
+# Définition du répertoire de travail
 WORKDIR /app
 
-# Étape 3 : copier les fichiers
-COPY requirements.txt .
-COPY app.py .
-COPY data_generator.py .
-COPY static/ static/
-
-# Étape 4 : dépendances système
+# Installation des dépendances système nécessaires
 RUN apt-get update && apt-get install -y \
     build-essential \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Étape 5 : installer les dépendances Python
-RUN pip install --no-cache-dir -r requirements.txt
+# Copie des fichiers de dépendances
+COPY requirements.txt .
 
-# Étape 6 : vérifier les versions installées
-RUN pip freeze
+# Installation des dépendances Python
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
-# Étape 7 : créer dossier db (si manquant)
+# Copie du code source
+COPY app.py .
+COPY data_generator.py .
+
+# Création du répertoire pour les données
 RUN mkdir -p data/raw
 
-# Étape 8 : générer les données initiales
-RUN python data_generator.py
-
-# Étape 9 : variables d'environnement
+# Variables d'environnement
 ENV FLASK_APP=app.py
 ENV FLASK_ENV=production
-ENV PORT=8000
+ENV PORT=10000
 ENV PYTHONUNBUFFERED=1
 
-# Étape 10 : exposer le port
-EXPOSE 8000
+# Génération des données initiales
+RUN python data_generator.py
 
-# Étape 11 : healthcheck
+# Exposition du port
+EXPOSE $PORT
+
+# Healthcheck pour vérifier la santé de l'application
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:${PORT}/health || exit 1
+    CMD curl -f http://localhost:$PORT/health || exit 1
 
-# Étape 12 : lancer Flask
+# Commande de démarrage avec Gunicorn
 CMD gunicorn --bind 0.0.0.0:$PORT \
     --workers=2 \
     --timeout=120 \
